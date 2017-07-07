@@ -62,3 +62,12 @@ h1:first-child.landing-title{
     position:sticky;
     margin-top: 50vh;
 }
+
+.ui.button{
+  max-height: 2.5em;
+  background-color: #8377D1
+}
+/*a.landing-title.item{
+    position:sticky;
+    margin-top: 50vh;
+}*/

@@ -10,8 +10,10 @@ const dbUrl = 'mongodb://localhost/nomads'
 function validate(data){
   let errors = {}
   if(data.title === "") errors.title = "Please Provide a Title"
+  if(data.email === "") errors.email = "Please Provide a Email"
+  if(data.password === "") errors.password = "Please Provide a Password"
   if(data.image === "") errors.image = "Please Provide an Image URL"
-  if(data.content === "") errors.content = "Please Provide some content for your post"
+  if(data.location === "") errors.location = "Please Provide some location for your post"
   const isValid = Object.keys(errors).length === 0
   return {errors, isValid};
 }
@@ -35,8 +37,8 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   app.post('/api/users', (req, res) => {
     const {errors, isValid } = validate(req.body);
     if (isValid){
-      const { title, image, content} = req.body
-      db.collection("users").insert({title, image, content}, (err, result)=> {
+      const { title, email, password, image, location} = req.body
+      db.collection("users").insert({title, email, password, image, location}, (err, result)=> {
         if(err){
           res.status(500).json({errors: {global: "something went wrong"}})
         } else{

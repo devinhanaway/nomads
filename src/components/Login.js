@@ -8,11 +8,8 @@ import {saveUser} from './actions'
 
 export class User extends Component {
   state = {
-    title: '',
     email: '',
     password:'',
-    image: '',
-    location: '',
     errors: {},
     loading: false,
     done: false
@@ -36,19 +33,16 @@ export class User extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let errors = {}
-    if(this.state.title === "") errors.title = "Please Provide a Title"
     if(this.state.email === "") errors.email = "Please Provide a Email"
     if(this.state.password === "") errors.password = "Please Provide a password"
-    if(this.state.image === "") errors.image = "Please Provide an Image URL"
-    if(this.state.location === "") errors.location = "Please Provide some location for your post"
     this.setState({ errors })
     const isValid = Object.keys(errors).length === 0
 
     if (isValid){
       console.log("checking handle submit)");
-      const {title, email, password, image, location} = this.state;
+      const {email, password} = this.state;
       this.setState({loading: true});
-      this.props.saveUser({title, email, password, image, location}).then(
+      this.props.saveUser({email, password}).then(
         () => {this.setState({done: true})},
         (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
       )
@@ -63,17 +57,7 @@ export class User extends Component {
 
       {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
 
-      <div className={ClassNames('field', {error: !!this.state.errors.title})}>
-        <label htmlFor="title">Name</label>
-        <input
-          name="title"
-          value={this.state.title}
-          onChange={this.handleChange}
-          id="title"
-          placeholder="first, last"
-        />
-      <span>{this.state.errors.title}</span>
-      </div>
+
       <div className={ClassNames('field', {error: !!this.state.errors.email})}>
         <label htmlFor="email">Email</label>
         <input
@@ -97,38 +81,10 @@ export class User extends Component {
       <span>{this.state.errors.password}</span>
       </div>
 
-      <div className={ClassNames('field', {error: !!this.state.errors.image})}>
-        <label htmlFor="image">Profile Photo</label>
-        <input
-          name="image"
-          value={this.state.image}
-          onChange={this.handleChange}
-          id="image"
-          placeholder="copy and paste a image url of you"
-        />
-      <span>{this.state.errors.image}</span>
 
-      </div>
-
-      <div className={ClassNames('field', {error: !!this.state.errors.location})}>
-        {this.state.image !== '' &&<img src={this.state.image} alt="image" className="ui small bordered image" />}
-      </div>
-
-      <div className={ClassNames('field', {error: !!this.state.errors.location})}>
-        <label htmlFor="location">Current Home</label>
-        <input
-          name="location"
-          value={this.state.location}
-          onChange={this.handleChange}
-          id="location"
-          placeholder="City, State, Country"
-        />
-      <span>{this.state.errors.location}</span>
-
-      </div>
 
       <div className="field">
-        <button className="ui primary button">Signup</button>
+        <button className="ui primary button">Login</button>
       </div>
 
     </form>

@@ -8,6 +8,7 @@ import NewUser from './components/NewUser'
 import User from './components/User'
 import Landing from './components/Landing'
 import SimpleMap from './components/SimpleMap'
+import Login from './components/Login'
 
 //middleware
 
@@ -40,6 +41,7 @@ ReactDOM.render(
       <Route path='/landing' component={Landing} />
       <Route path='/newuser' component={NewUser} />
       <Route path='/simplemap' component={SimpleMap} />
+    <Route path='/login' component={Login} />
       </div>
     </Provider>
   </Router>

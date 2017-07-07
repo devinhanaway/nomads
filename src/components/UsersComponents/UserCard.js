@@ -8,7 +8,8 @@ export default function UserCard({user}){
       </div>
       <div className="content">
         <div className="header">{user.title}</div>
-      <div className="content">{user.content}</div>
+      <div className="content">Loction: {user.location}</div>
+    <div className="email">Email: {user.email}</div>
       </div>
     </div>
   )

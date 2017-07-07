@@ -22,7 +22,7 @@ export default class SimpleMap extends React.Component {
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
             bootstrapURLKeys={{
-    					key: 'redacted'
+    					key: 'AIzaSyCYZ_MHNl3DWZmf6GF4Y66oi4Rcki4gcrg'
     				}}
             >
 

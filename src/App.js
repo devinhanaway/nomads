@@ -16,11 +16,11 @@ class App extends Component {
     return (
       <div >
 
-        <div className="ui four item menu container">
+        <div className="ui three item menu container">
         <Link className="item" to="/landing">Home</Link>
         <Link className="item" to="/user">Users</Link>
         <Link className="item" to="/simplemap">SimpleMap</Link>
-        <Link className="item" to="/newuser">Signup</Link>
+        {/* <Link className="item" to="/newuser">Signup</Link> */}
         </div>
 
         {/* <h1 className="ui header">Nomads</h1>
