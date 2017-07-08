@@ -4,7 +4,7 @@ import '../App.css';
 import ClassNames from 'classnames'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {saveUser} from './actions'
+import {Signup} from './actions'
 
 export class User extends Component {
   state = {
@@ -48,7 +48,7 @@ export class User extends Component {
       console.log("checking handle submit)");
       const {title, email, password, image, location} = this.state;
       this.setState({loading: true});
-      this.props.saveUser({title, email, password, image, location}).then(
+      this.props.Signup({title, email, password, image, location}).then(
         () => {this.setState({done: true})},
         (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
       )
@@ -140,4 +140,4 @@ export class User extends Component {
     )
   }
 }
-export default connect(null, {saveUser})(User)
+export default connect(null, {Signup})(User)
