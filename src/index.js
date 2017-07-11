@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import GoogleMapReact from 'google-map-react';
 
 //middleware
-import ModalConductor from './components/ModalConductor/ModalConductor'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './rootReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -41,7 +40,6 @@ ReactDOM.render(
     <Provider store={store}>
 
       <div className="ui">
-      <ModalConductor state={state}/>
 
       <Route path='/' component={App} />
       <Route path='/User' component={User} />

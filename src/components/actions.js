@@ -59,6 +59,8 @@ export function Signup(data){
     .then(data => dispatch(addUser(data.user)))
   }
 }
+
+
 export function checkUser(data){
   return dispatch => {
      return fetch('http://localhost:8080/api/users', {
@@ -77,6 +79,6 @@ export function fetchUsers() {
   return dispatch => {
     fetch('http://localhost:8080/api/users')
       .then(res => res.json())
-      .then(data => dispatch(setUsers(data.users)))
+      .then(data => dispatch(setUsers(data.user)))
   }
 }
