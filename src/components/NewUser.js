@@ -11,6 +11,7 @@ export class User extends Component {
     title: '',
     email: '',
     password:'',
+    passwordConfirmation:'',
     image: '',
     location: '',
     errors: {},
@@ -33,12 +34,16 @@ export class User extends Component {
    }
 
 
+
+
+
   handleSubmit = (e) => {
     e.preventDefault();
     let errors = {}
     if(this.state.title === "") errors.title = "Please Provide a Title"
     if(this.state.email === "") errors.email = "Please Provide a Email"
     if(this.state.password === "") errors.password = "Please Provide a password"
+    if(this.state.passwordConfirmation === "") errors.passwordConfirmation = "Please confrim password"
     if(this.state.image === "") errors.image = "Please Provide an Image URL"
     if(this.state.location === "") errors.location = "Please Provide some location for your post"
     this.setState({ errors })
@@ -46,10 +51,14 @@ export class User extends Component {
 
     if (isValid){
       console.log("checking handle submit)");
-      const {title, email, password, image, location} = this.state;
+      const {title, email, password, passwordConfirmation, image, location} = this.state;
       this.setState({loading: true});
-      this.props.Signup({title, email, password, image, location}).then(
-        () => {this.setState({done: true})},
+      // this.setState({done: true});
+      this.props.Signup({title, email, password, passwordConfirmation, image, location}).then(
+        () => {
+          console.log("WHY ISN'T THIS WORKING");
+          this.setState({done: true})
+        },
         (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
       )
     }
@@ -58,10 +67,10 @@ export class User extends Component {
 
   render(){
     const form = (
-      <form className={ClassNames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
+      <form className={ClassNames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit} >
         <h1>Become a Nomad</h1>
 
-      {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
+      {/* {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>} */}
 
       <div className={ClassNames('field', {error: !!this.state.errors.title})}>
         <label htmlFor="title">Name</label>
@@ -81,7 +90,7 @@ export class User extends Component {
           value={this.state.email}
           onChange={this.handleChange}
           id="email"
-          placeholder="first, last"
+          placeholder="enter valid email"
         />
       <span>{this.state.errors.email}</span>
       </div>
@@ -92,9 +101,20 @@ export class User extends Component {
           value={this.state.password}
           onChange={this.handleChange}
           id="password"
-          placeholder="first, last"
+          placeholder="Enter Password"
         />
       <span>{this.state.errors.password}</span>
+      </div>
+      <div className={ClassNames('field', {error: !!this.state.errors.passwordConfirmation})}>
+        <label htmlFor="passwordConfirmation">Password confirmation</label>
+        <input
+          name="passwordConfirmation"
+          value={this.state.passwordConfirmation}
+          onChange={this.handleChange}
+          id="passwordConfirmation"
+          placeholder="Confirm Password"
+        />
+      <span>{this.state.errors.passwordConfirmation}</span>
       </div>
 
       <div className={ClassNames('field', {error: !!this.state.errors.image})}>
@@ -140,4 +160,5 @@ export class User extends Component {
     )
   }
 }
+
 export default connect(null, {Signup})(User)

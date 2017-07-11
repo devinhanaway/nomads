@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import '../../App.css';
 
 import {
-  BrowserRouter as Router,
-  Route,
+
   Link
 } from 'react-router-dom'
 
-import {Modal} from '../actions'
+// import {Modal} from '../actions'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
@@ -60,4 +59,5 @@ export class HeroImage extends Component{
     )
   }
 }
-export default connect(null, {Modal})(HeroImage)
+export default connect(null)(HeroImage)
+// export default connect(null, {Modal})(HeroImage)
