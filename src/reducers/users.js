@@ -1,4 +1,4 @@
-import { SET_USERS, ADD_USER} from '../components/actions'
+import { SET_USERS, ADD_USER, CURRENT_USER} from '../components/actions'
 
 
 export default function Users(state = [], action = {}){
@@ -12,6 +12,11 @@ export default function Users(state = [], action = {}){
       ];
     case SET_USERS:
       return action.users
+    case CURRENT_USER:
+      return [
+        ...state,
+        action.currentUser
+      ]
     default: return state;
   }
 }

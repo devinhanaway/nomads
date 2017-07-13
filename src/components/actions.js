@@ -1,8 +1,10 @@
 export const SET_USERS = "SET_USERS"
 export const ADD_USER = "ADD_USER"
+export const CURRENT_USER = "CURRENT_USER"
 export const SET_MODAL = "SET_MODAL"
 
 function handleReponse(response){
+  console.log(response);
   if(response.ok){
     return response.json();
   }else {
@@ -17,6 +19,14 @@ export function setUsers(users){
   return {
     type: SET_USERS,
     users
+  }
+}
+
+export function currentUser(currentUser){
+  console.log(currentUser);
+  return {
+    type: CURRENT_USER,
+    currentUser
   }
 }
 
@@ -49,7 +59,7 @@ export function Modal(data){
 
 export function Signup(data){
   return dispatch => {
-     return fetch('http://localhost:8080/api/users', {
+     return fetch('http://localhost:8080/api/users/new', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -61,16 +71,31 @@ export function Signup(data){
 }
 
 
-export function checkUser(data){
+
+
+export function loginUser(data){
+  console.log(data);
   return dispatch => {
-     return fetch('http://localhost:8080/api/users', {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(handleReponse)
-    .then(data => dispatch(addUser(data.user)))
+    return fetch('http://localhost:8080/api/users/'+data)
+    .then(handleReponse)
+    .then(data => dispatch(currentUser(data.user)))
+  }
+}
+
+export function loginUserAuth(data){
+  console.log(data);
+  return dispatch => {
+    return fetch('http://localhost:8080/api/users/'+data,
+    {
+     method: 'post',
+     body: JSON.stringify(data),
+     headers: {
+       "Content-Type": "application/json"
+     }
+   }
+  )
+    .then(handleReponse)
+    .then(data => dispatch(currentUser(data.user)))
   }
 }
 

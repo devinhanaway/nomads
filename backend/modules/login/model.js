@@ -1,6 +1,6 @@
 import mongoose, {Schema} from 'mongoose'
 
-let userSchema = new Schema({
+let loginSchema = new Schema({
   title: {
     type: String,
     unique: false,
@@ -34,4 +34,4 @@ let userSchema = new Schema({
   }
 }, {timestamps:true});
 
-export default mongoose.model('User', userSchema)
+export default mongoose.model('Login', loginSchema)

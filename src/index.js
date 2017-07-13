@@ -23,7 +23,6 @@ import SimpleMap from './components/SimpleMap'
 import Login from './components/Login'
 
 
-
 const store = createStore(
   rootReducer,
   composeWithDevTools(

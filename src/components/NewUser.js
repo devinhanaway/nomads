@@ -11,6 +11,7 @@ export class User extends Component {
     title: '',
     email: '',
     password:'',
+    passwordConfirmation:'',
     image: '',
     location: '',
     errors: {},
@@ -39,6 +40,7 @@ export class User extends Component {
     if(this.state.title === "") errors.title = "Please Provide a Title"
     if(this.state.email === "") errors.email = "Please Provide a Email"
     if(this.state.password === "") errors.password = "Please Provide a password"
+    if(this.state.passwordConfirmation != this.state.password) errors.passwordConfirmation = "Password Confirmation Must match Password"
     if(this.state.image === "") errors.image = "Please Provide an Image URL"
     if(this.state.location === "") errors.location = "Please Provide some location for your post"
     this.setState({ errors })
@@ -46,9 +48,10 @@ export class User extends Component {
 
     if (isValid){
       console.log("checking handle submit)");
-      const {title, email, password, image, location} = this.state;
+      const {title, email, password, passwordConfirmation, image, location} = this.state;
       this.setState({loading: true});
-      this.props.Signup({title, email, password, image, location}).then(
+      this.props.Signup({title, email, password, passwordConfirmation, image, location})
+      .then(
         () => {this.setState({done: true})},
         (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
       )
@@ -95,6 +98,17 @@ export class User extends Component {
           placeholder="first, last"
         />
       <span>{this.state.errors.password}</span>
+      </div>
+      <div className={ClassNames('field', {error: !!this.state.errors.passwordConfirmation})}>
+        <label htmlFor="passwordConfirmation">Password Confirmation</label>
+        <input
+          name="passwordConfirmation"
+          value={this.state.passwordConfirmation}
+          onChange={this.handleChange}
+          id="passwordConfirmation"
+          placeholder="first, last"
+        />
+      <span>{this.state.errors.passwordConfirmation}</span>
       </div>
 
       <div className={ClassNames('field', {error: !!this.state.errors.image})}>

@@ -4,12 +4,16 @@ import '../App.css';
 import ClassNames from 'classnames'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {checkUser} from './actions'
+import {loginUser, fetchUsers, loginUserAuth} from './actions'
 
-export class User extends Component {
+export class Login extends Component {
+  componentDidMount(){
+    this.props.fetchUsers()
+  }
   state = {
     email: '',
     password:'',
+    id: '',
     errors: {},
     loading: false,
     done: false
@@ -43,15 +47,35 @@ export class User extends Component {
       console.log("checking handle submit)");
       const {email, password} = this.state;
       this.setState({loading: true});
-      this.props.checkUser({email, password}).then(
-        () => {this.setState({done: true})},
-        (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
-      )
+      console.log(this.props.users);
+      console.log(this.props.users[1].email);
+      this.props.users.forEach((entry)=>{
+        console.log(this.state.email)
+        console.log(entry.email);
+        if (this.state.email === entry.email){
+          console.log(entry._id);
+          let email = entry.email
+          console.log(entry);
+          let userCred = {
+          }
+          userCred.email = this.state.email
+          userCred.password = this.state.password
+          console.log(userCred);
+          // console.log(this.props.loginUser(id))
+          this.props.loginUserAuth(userCred)
+          .then(
+            () => {this.setState({done: true})},
+            (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
+          )
+        }
+        })
     }
-  }
+    }
+
 
 
   render(){
+    // const {errors, email, password, loading, done} = this.state
     const form = (
       <form className={ClassNames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
         <h1>Become a Nomad</h1>
@@ -66,7 +90,7 @@ export class User extends Component {
           value={this.state.email}
           onChange={this.handleChange}
           id="email"
-          placeholder="first, last"
+          placeholder="enter a valid email "
         />
       <span>{this.state.errors.email}</span>
       </div>
@@ -97,4 +121,15 @@ export class User extends Component {
     )
   }
 }
-export default connect(null, {checkUser})(User)
+
+Login.propTypes = {
+  users: React.PropTypes.array.isRequired,
+  fetchUsers: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return{
+    users: state.users
+  }
+}
+export default connect(mapStateToProps, {loginUser, loginUserAuth, fetchUsers})(Login)
