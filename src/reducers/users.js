@@ -15,7 +15,7 @@ export default function Users(state = [], action = {}){
     case CURRENT_USER:
       return [
         ...state,
-        action.currentUser
+        action.token
       ]
     default: return state;
   }

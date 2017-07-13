@@ -1,5 +1,7 @@
 import User from './model'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import config from '../config'
 // import validateSignup from "./validateSignup"
 
 
@@ -28,7 +30,7 @@ export const login = async (req, res)=>{
   const{email} = req.body
   if(true){
     try {
-      return res.status(200).json({user: await User.findOne({'email': req.params.email})})
+      return res.status(200).json({token: await User.findOne({'email': req.params.email})})
     }
     catch(err){
       return res.status(err.status).json({error: true, message:"User doesn't exist"})
@@ -82,7 +84,12 @@ export const loginAuth = (req, res)=>{
     console.log(req.body.password);
     bcrypt.compare(req.body.password, user.password_digest, (err,result)=>{
       if(result === true){
-        return res.status(200).json({user: user})
+        const token = jwt.sign({
+          id: user.id,
+          title: user.title,
+          email: user.email
+        }, config.jwtSecret)
+        return res.status(200).json({token: token})
       }else{
         return res.status(401).json({error: true, message:"incorrect password"})
       }

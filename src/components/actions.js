@@ -1,7 +1,25 @@
+import {fetchJSON, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
+
+
 export const SET_USERS = "SET_USERS"
 export const ADD_USER = "ADD_USER"
 export const CURRENT_USER = "CURRENT_USER"
 export const SET_MODAL = "SET_MODAL"
+
+// function setAuthorizationToken(data){
+//   console.log(data);
+//   if(data){
+//     localStorage.setItem('jwtToken', data.token)
+//     fetch.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
+//     return data.token
+//
+//   }
+//   else{
+//     delete fetch.defaults.headers.common['Authorization']
+//     return data.token
+//   }
+// }
+
 
 function handleReponse(response){
   console.log(response);
@@ -22,11 +40,11 @@ export function setUsers(users){
   }
 }
 
-export function currentUser(currentUser){
-  console.log(currentUser);
+export function currentUser(token){
+  console.log(token);
   return {
     type: CURRENT_USER,
-    currentUser
+    token
   }
 }
 
@@ -95,7 +113,11 @@ export function loginUserAuth(data){
    }
   )
     .then(handleReponse)
-    .then(data => dispatch(currentUser(data.user)))
+    .then(data =>{
+      localStorage.setItem('jwtToken', data.token)
+      console.log(data.token);
+          dispatch(currentUser(data.token))
+        })
   }
 }
 
