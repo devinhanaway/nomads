@@ -16,6 +16,11 @@ let userSchema = new Schema({
     unique: false,
     required: true
   } ,
+  password_digest: {
+    type: String,
+    unique: true,
+    required: true
+  } ,
   location: {
     type: String,
     unique: false,

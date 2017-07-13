@@ -1,4 +1,5 @@
 import User from './model'
+import bcrypt from 'bcrypt'
 // import validateSignup from "./validateSignup"
 
 
@@ -54,25 +55,46 @@ export const login = async (req, res)=>{
 //     }
 //   }
 // }
+
+
+function validateLogin(data){
+  let errors = {}
+  if(data.email === "") errors.email = "Please Provide a Email"
+  if(data.password === "") errors.password = "Please Provide a Password"
+  const isTrue = Object.keys(errors).length === 0
+  return {errors, isTrue};
+}
+
+
 export const loginAuth = (req, res)=>{
-  // const{errors, isValid} = validateLogin(req.body)
-  //req.id = req.params.id
+  const {errors, isTrue } = validateLogin(req.body);
   console.log("something was here ************");
   console.log(req.body);
   console.log(req.body.email);
-  // console.log(req.id);
-  // req.params.id
+
+  if(isTrue){
+
   User.findOne({'email': req.body.email}).then(user=>{
+
+    if(user){
     console.log("let's see what user data we are getting back");
-    console.log(user.password);
+    console.log(user.password_digest);
     console.log(req.body.password);
-    if (user.password === req.body.password){
-      return res.status(200).json({user: user})
-    }
-    else{
-        return res.status(err.status).json({error: true, message:"User doesn't exist"})
-    }
+    bcrypt.compare(req.body.password, user.password_digest, (err,result)=>{
+      if(result === true){
+        return res.status(200).json({user: user})
+      }else{
+        return res.status(401).json({error: true, message:"incorrect password"})
+      }
+    })
+  }else{
+    return res.status(401).json({error: true, message:"User doesn't exist"})
+  }
   })
+}else{
+  res.status(400).json({errors})
+
+}
   // console.log(currentUser);
   // if(true){
   //   try {
@@ -90,8 +112,8 @@ export const loginAuth = (req, res)=>{
   const {errors, isValid } = validateSignup(req.body);
   const { title, email, password, passwordConfirmation, image, location} = req.body
     if (isValid){
-
-      const newUser = new User({title, email, password, passwordConfirmation, image, location})
+      const password_digest = bcrypt.hashSync(password, 10)
+      const newUser = new User({title, email, password, password_digest, passwordConfirmation, image, location})
 
       try{
         console.log("something");

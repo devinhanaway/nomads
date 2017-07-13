@@ -48,14 +48,6 @@ export class Login extends Component {
       const {email, password} = this.state;
       this.setState({loading: true});
       console.log(this.props.users);
-      console.log(this.props.users[1].email);
-      this.props.users.forEach((entry)=>{
-        console.log(this.state.email)
-        console.log(entry.email);
-        if (this.state.email === entry.email){
-          console.log(entry._id);
-          let email = entry.email
-          console.log(entry);
           let userCred = {
           }
           userCred.email = this.state.email
@@ -65,10 +57,14 @@ export class Login extends Component {
           this.props.loginUserAuth(userCred)
           .then(
             () => {this.setState({done: true})},
-            (err)=> err.response.json().then(({errors})=> this.setState({errors, loading: false}))
+            (err)=> err.response.json().then((error)=>
+            {
+              console.log(error);
+              this.setState({errors: { global: error.message}, loading: false})
+              console.log(this.state.errors);
+          })
           )
-        }
-        })
+
     }
     }
 
