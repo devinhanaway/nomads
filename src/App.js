@@ -14,12 +14,12 @@ class App extends Component {
 
     return (
       <div >
-        <div className="ui three item menu container">
+        {/* <div className="ui three item menu container">
         <Link className="item" to="/landing">Home</Link>
         <Link className="item" to="/user">Users</Link>
         <Link className="item" to="/simplemap">SimpleMap</Link>
-        {/* <Link className="item" to="/newuser">Signup</Link> */}
-        </div>
+        <Link className="item" to="/newuser">Signup</Link>
+        </div> */}
 
       </div>
 

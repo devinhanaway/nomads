@@ -12,7 +12,7 @@ import { fetchUsers} from './actions'
 import Nav from './Nav'
 
 
-class User extends Component {
+class SearchUsers extends Component {
   componentDidMount(){
     this.props.fetchUsers()
   }
@@ -33,7 +33,7 @@ class User extends Component {
   }
 }
 
-User.propTypes = {
+SearchUsers.propTypes = {
   users: React.PropTypes.array.isRequired,
   fetchUsers: React.PropTypes.func.isRequired
 }
@@ -44,4 +44,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(User)
+export default connect(mapStateToProps, { fetchUsers })(SearchUsers)

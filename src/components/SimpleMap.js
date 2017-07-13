@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import Nav from './Nav'
 import GoogleMapReact from 'google-map-react';
 
 
@@ -15,6 +15,7 @@ export default class SimpleMap extends React.Component {
   render() {
     return (
       <div>
+        <Nav />
         <div style={{width: '100%', height: '400px'}}>
           <h1>Hello Simple Map</h1>
            <GoogleMapReact
