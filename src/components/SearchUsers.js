@@ -3,7 +3,7 @@ import '../App.css';
 
 import Image1 from './assets/img1.jpg'
 
-import UserList from './UsersComponents/UserList'
+import UserList from './AddUsersComponents/UserList'
 
 import { connect } from 'react-redux'
 

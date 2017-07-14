@@ -4,7 +4,7 @@ import '../App.css';
 import ClassNames from 'classnames'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {loginUser, fetchUsers, loginUserAuth} from './actions'
+import { fetchUsers, loginUserAuth} from './actions'
 
 export class Login extends Component {
   componentDidMount(){
@@ -128,4 +128,4 @@ function mapStateToProps(state) {
     users: state.users
   }
 }
-export default connect(mapStateToProps, {loginUser, loginUserAuth, fetchUsers})(Login)
+export default connect(mapStateToProps, { loginUserAuth, fetchUsers})(Login)

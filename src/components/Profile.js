@@ -3,28 +3,31 @@ import '../App.css';
 
 import Image1 from './assets/img1.jpg'
 
-import UserList from './UsersComponents/UserList'
+import UserList from './ProfileComponents/UserList'
 
 import { connect } from 'react-redux'
 
-import { fetchUsers} from './actions'
+import { current } from './actions'
 
 import Nav from './Nav'
+const testItem = "596829e1ddf5ae41cc462b7b"
 
 
-class User extends Component {
+class Profile extends Component {
   componentDidMount(){
-    this.props.fetchUsers()
+    this.props.current(testItem)
   }
 
-  render(){
 
+  render(){
+    // console.log(this.props.current(testItem));
+    console.log(this.props.currentUser);
     console.log(this.props);
-    console.log(this.props.users);
+    console.log("jknwefkjwnfjkn wknewclkwenklwn lkendwleknf");
     return(
       <div className="ui container">
         <Nav />
-        <UserList users={this.props.users} />
+      <UserList currentUser={this.props.currentUser} />
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>
           <h3 className="col-md-8">Title</h3>
@@ -36,15 +39,15 @@ class User extends Component {
   }
 }
 
-User.propTypes = {
-  users: React.PropTypes.array.isRequired,
-  fetchUsers: React.PropTypes.func.isRequired
+Profile.propTypes = {
+  currentUser: React.PropTypes.object.isRequired,
+  current: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
   return{
-    users: state.users
+    currentUser: state.users
   }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(User)
+export default connect(mapStateToProps, { current })(Profile)

@@ -22,6 +22,7 @@ import Landing from './components/Landing'
 import SimpleMap from './components/SimpleMap'
 import Login from './components/Login'
 import SearchUsers from './components/SearchUsers'
+import Profile from './components/Profile'
 
 
 const store = createStore(
@@ -48,6 +49,7 @@ ReactDOM.render(
       <Route path='/simplemap' component={SimpleMap} />
       <Route path='/login' component={Login} />
     <Route path='/searchusers' component={SearchUsers} />
+  <Route path='/profile' component={Profile} />
       </div>
 
     </Provider>

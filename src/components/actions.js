@@ -5,6 +5,7 @@ export const SET_USERS = "SET_USERS"
 export const ADD_USER = "ADD_USER"
 export const CURRENT_USER = "CURRENT_USER"
 export const SET_MODAL = "SET_MODAL"
+export const CURRENT_TOKEN = "CURRENT_TOKEN"
 
 // function setAuthorizationToken(data){
 //   console.log(data);
@@ -40,11 +41,19 @@ export function setUsers(users){
   }
 }
 
-export function currentUser(token){
+export function getToken(token){
   console.log(token);
   return {
-    type: CURRENT_USER,
+    type: CURRENT_TOKEN,
     token
+  }
+}
+
+export function currentUser(currentUser){
+  console.log(currentUser);
+  return {
+    type: CURRENT_USER,
+    currentUser
   }
 }
 
@@ -88,15 +97,14 @@ export function Signup(data){
   }
 }
 
+//
 
-
-
-export function loginUser(data){
+export function current(data){
   console.log(data);
   return dispatch => {
     return fetch('http://localhost:8080/api/users/'+data)
     .then(handleReponse)
-    .then(data => dispatch(currentUser(data.user)))
+    .then(data => dispatch(currentUser(data.currentUser)))
   }
 }
 
@@ -116,7 +124,7 @@ export function loginUserAuth(data){
     .then(data =>{
       localStorage.setItem('jwtToken', data.token)
       console.log(data.token);
-          dispatch(currentUser(data.token))
+          dispatch(getToken(data.token))
         })
   }
 }

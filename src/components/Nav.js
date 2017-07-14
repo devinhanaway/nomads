@@ -39,7 +39,7 @@ export default class Nav extends React.Component {
             <Link className="item" to="/landing">
               Logout
             </Link>
-            <Link className="item" to="/landing">
+            <Link className="item" to="/profile">
               Profile
             </Link>
           </div>
