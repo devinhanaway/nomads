@@ -125,6 +125,7 @@ export function loginUserAuth(data){
   )
     .then(handleReponse)
     .then(data =>{
+      console.log(data);
       localStorage.setItem('jwtToken', data.token)
       console.log(data.token);
           dispatch(getToken(data.token))

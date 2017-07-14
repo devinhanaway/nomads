@@ -1,5 +1,5 @@
 function createOptionsWithMethod(method, body) {
-  const token = localStorage.getItem('session');
+  const token = localStorage.getItem('jwtToken');
   return {
     method,
     headers: {
@@ -9,9 +9,19 @@ function createOptionsWithMethod(method, body) {
     body: JSON.stringify(body),
   };
 }
+function createGetMethod(method) {
+  const token = localStorage.getItem('session');
+  return {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  };
+}
 
 export function fetchJSON(url) {
-  return fetch(url)
+  return fetch(url, createGetMethod('GET'))
     .then(res => res.json());
 }
 
