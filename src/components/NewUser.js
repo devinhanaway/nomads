@@ -149,7 +149,7 @@ export class User extends Component {
     )
     return(
       <div className="ui container">
-        {this.state.done ? <Redirect to="/user"/>: form}
+        {this.state.done ? <Redirect to="/profile"/>: form}
       </div>
     )
   }
