@@ -1,6 +1,9 @@
 
 import React, { Component } from 'react';
 import Requests from './NavComponents/connectionsRequests'
+import {Icon, Dropdown} from 'semantic-ui-react'
+import propTypes from 'react'
+
 
 import ReactDOM from 'react-dom';
 import {
@@ -18,6 +21,7 @@ export default class Nav extends React.Component {
   state = {
     done: false
   };
+
 
    logout = (e)=>{
     e.preventDefault()
@@ -44,7 +48,6 @@ export default class Nav extends React.Component {
                 <input type="text" placeholder="Search..."/>
                 <i className="search link icon"></i>
               </div>
-
             </div>
             <Link className="item" onClick={this.logout} to="/landing">
               Logout
@@ -53,6 +56,7 @@ export default class Nav extends React.Component {
               Profile
             </Link>
           </div>
+          <Requests/>
         </div>
       )
     return (
