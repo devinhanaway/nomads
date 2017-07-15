@@ -8,6 +8,8 @@ import UserList from './AddUsersComponents/UserList'
 import { connect } from 'react-redux'
 
 import { fetchUsers} from './actions'
+// import { addConnection} from './actions'
+
 
 import Nav from './Nav'
 
@@ -21,7 +23,7 @@ class SearchUsers extends Component {
     return(
       <div className="ui container">
         <Nav />
-        <UserList users={this.props.users} />
+      <UserList  users={this.props.users} />
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>
           <h3 className="col-md-8">Title</h3>
@@ -35,7 +37,8 @@ class SearchUsers extends Component {
 
 SearchUsers.propTypes = {
   users: React.PropTypes.array.isRequired,
-  fetchUsers: React.PropTypes.func.isRequired
+  fetchUsers: React.PropTypes.func.isRequired,
+  // addConnection: React.PropTypes.func.isRequired
 }
 
 SearchUsers.defaultProps= {

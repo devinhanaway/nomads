@@ -21,8 +21,6 @@ export default function UserList({ users }) {
 }
 
 UserList.propTypes = {
-  users: React.PropTypes.array.isRequired
-}
-UserList.defaultProps= {
-  users: []
+  users: React.PropTypes.array.isRequired,
+  // addConnection: React.PropTypes.func.isRequired
 }

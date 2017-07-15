@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import Requests from './NavComponents/connectionsRequests'
+
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -35,12 +37,14 @@ export default class Nav extends React.Component {
             Your Nomads
           </Link>
 
+
           <div className="right menu">
             <div className="item">
               <div className="ui icon input">
                 <input type="text" placeholder="Search..."/>
                 <i className="search link icon"></i>
               </div>
+
             </div>
             <Link className="item" onClick={this.logout} to="/landing">
               Logout

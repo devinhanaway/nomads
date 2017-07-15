@@ -150,22 +150,21 @@ export function fetchUsers() {
   }
 }
 
-export function addConnection(){
+export function addConnection(connection){
   const data = decodejwt()
   console.log(data);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data,
-    return fetch('http://localhost:8080/api/connections/new'+data.id,
+    return fetch('http://localhost:8080/api/connections/new/'+data.id,
     {
      method: 'post',
-     body: JSON.stringify(data),
+     body: JSON.stringify(connection),
      headers: {
        "Content-Type": "application/json"
      }
    }
   )
     .then(handleReponse)
-    .then(data =>{dispatch(getToken(data))
-        })
+    // .then(data =>{dispatch(getToken(data))})
   }
 }
