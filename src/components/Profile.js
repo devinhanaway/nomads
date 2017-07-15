@@ -10,12 +10,13 @@ import { connect } from 'react-redux'
 import { current } from './actions'
 
 import Nav from './Nav'
-const testItem = "5968eaa9aea75900118caa84"
+
+const testItem = localStorage.getItem('jwtToken');
 
 
 class Profile extends Component {
   componentDidMount(){
-    this.props.current(testItem)
+    this.props.current()
   }
 
 
@@ -46,7 +47,7 @@ Profile.propTypes = {
 
 function mapStateToProps(state) {
   return{
-    currentUser: state.users
+    currentUser: state.currentUser
   }
 }
 

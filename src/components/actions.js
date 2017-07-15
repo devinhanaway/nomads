@@ -1,4 +1,4 @@
-import {fetchJSON, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
+import {fetchJSON, decodejwt, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
 
 
 export const SET_USERS = "SET_USERS"
@@ -100,15 +100,28 @@ export function Signup(data){
 
 //
 
-export function current(data){
-  console.log(data);
+export function current(){
+  const data = decodejwt()
+    console.log("sldkgsdklfnsdlkfnd");
+    console.log(data);
   return dispatch => {
-    return fetch('https://nomadsapp.herokuapp.com/api/users/'+data)
+    return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id)
     // return fetch('http://localhost:8080/api/users/'+data)
     .then(handleReponse)
     .then(data => dispatch(currentUser(data.currentUser)))
   }
+
 }
+//
+// export function current(data){
+//   console.log(data);
+//   return dispatch => {
+//     return fetch('https://nomadsapp.herokuapp.com/api/users/'+data)
+//     // return fetch('http://localhost:8080/api/users/'+data)
+//     .then(handleReponse)
+//     .then(data => dispatch(currentUser(data.currentUser)))
+//   }
+// }
 
 export function loginUserAuth(data){
   console.log(data);
@@ -125,7 +138,6 @@ export function loginUserAuth(data){
   )
     .then(handleReponse)
     .then(data =>{
-      console.log(data);
       localStorage.setItem('jwtToken', data.token)
       console.log(data.token);
           dispatch(getToken(data.token))

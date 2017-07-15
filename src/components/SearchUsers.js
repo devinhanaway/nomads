@@ -38,6 +38,10 @@ SearchUsers.propTypes = {
   fetchUsers: React.PropTypes.func.isRequired
 }
 
+SearchUsers.defaultProps= {
+  users: []
+}
+
 function mapStateToProps(state) {
   return{
     users: state.users

@@ -6,19 +6,25 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
+
 
 
 
 
 export default class Nav extends React.Component {
-  static defaultProps = {
-
+  state = {
+    done: false
   };
 
+   logout = (e)=>{
+    e.preventDefault()
+    localStorage.removeItem("jwtToken")
+    this.setState({done: true})
+  }
+
   render() {
-    return (
-      <div>
-        <div className="ui secondary  menu">
+    const nav = (    <div className="ui secondary  menu">
           <Link className="item" to="/simplemap">
             Your Map
           </Link>
@@ -36,7 +42,7 @@ export default class Nav extends React.Component {
                 <i className="search link icon"></i>
               </div>
             </div>
-            <Link className="item" to="/landing">
+            <Link className="item" onClick={this.logout} to="/landing">
               Logout
             </Link>
             <Link className="item" to="/profile">
@@ -44,6 +50,10 @@ export default class Nav extends React.Component {
             </Link>
           </div>
         </div>
+      )
+    return (
+      <div>
+        {this.state.done ? <Redirect to='/landing'/>: nav}
       </div>
     );
   }

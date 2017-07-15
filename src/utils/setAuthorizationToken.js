@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken'
+
 function createOptionsWithMethod(method, body) {
   const token = localStorage.getItem('jwtToken');
   return {
@@ -10,7 +12,7 @@ function createOptionsWithMethod(method, body) {
   };
 }
 function createGetMethod(method) {
-  const token = localStorage.getItem('session');
+  const token = localStorage.getItem('jwtToken');
   return {
     method,
     headers: {
@@ -18,6 +20,14 @@ function createGetMethod(method) {
       Authorization: `Bearer ${token}`,
     }
   };
+}
+
+export function decodejwt(){
+  const token = localStorage.getItem('jwtToken');
+  console.log(token);
+  let data = jwt.decode(token)
+  console.log(data);
+  return data
 }
 
 export function fetchJSON(url) {

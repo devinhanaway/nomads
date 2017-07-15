@@ -19,3 +19,7 @@ export default function UserCard({user}){
 UserCard.propTypes = {
   user: React.PropTypes.object.isRequired
 }
+
+UserCard.defaultProps= {
+  users: []
+}
