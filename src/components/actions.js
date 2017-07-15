@@ -116,16 +116,7 @@ export function current(){
   }
 
 }
-//
-// export function current(data){
-//   console.log(data);
-//   return dispatch => {
-//     return fetch('https://nomadsapp.herokuapp.com/api/users/'+data)
-//     // return fetch('http://localhost:8080/api/users/'+data)
-//     .then(handleReponse)
-//     .then(data => dispatch(currentUser(data.currentUser)))
-//   }
-// }
+
 
 export function loginUserAuth(data){
   console.log(data);
@@ -156,5 +147,25 @@ export function fetchUsers() {
     fetch('http://localhost:8080/api/users')
       .then(res => res.json())
       .then(data => dispatch(setUsers(data.user)))
+  }
+}
+
+export function addConnection(){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch => {
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data,
+    return fetch('http://localhost:8080/api/connections/new'+data.id,
+    {
+     method: 'post',
+     body: JSON.stringify(data),
+     headers: {
+       "Content-Type": "application/json"
+     }
+   }
+  )
+    .then(handleReponse)
+    .then(data =>{dispatch(getToken(data))
+        })
   }
 }
