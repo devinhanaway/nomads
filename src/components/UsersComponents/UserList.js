@@ -1,25 +1,25 @@
 import React from 'react';
 import UserCard from './UserCard'
 
-export default function UserList({ users }) {
+export default function UserList({ currentConnections }) {
   const emptyMessage = (
-    <p>There are no users yet</p>
+    <p>There are no currentConnections yet</p>
   )
 
   const userList = (
     <div className="ui four cards">
-      {users.map(user => <UserCard user={user} key={user._id}/>)}
+      {currentConnections.map(user => <UserCard user={user} key={user._id}/>)}
     </div>
 
   )
   return(
     <div>
-      {users.length === 0 ? emptyMessage : userList}
+      {currentConnections.length === 0 ? emptyMessage : userList}
     </div>
 
   )
 }
 
 UserList.propTypes = {
-  users: React.PropTypes.array.isRequired
+  currentConnections: React.PropTypes.array.isRequired
 }

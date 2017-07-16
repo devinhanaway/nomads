@@ -1,33 +1,39 @@
 import React from 'react'
 import {Button, Container, Divider, Dropdown, Label, Icon} from 'semantic-ui-react'
 
+import {getConnections} from '../actions'
+
+import { connect } from 'react-redux'
 
 
 export class Requests extends React.Component {
   constructor(props) {
 		super(props);
+
     this.state = {
-
-      options: [
-        {
-            text: 'Devin Hanaway',
-            value: 'Devin Hanaway',
-            image: { avatar: true, src: 'http://www.devinhanaway.com/home_profile_pic_circle.png' },
-          },
-          {
-            text: 'nick mckendry',
-            value: 'nick mckendry',
-            image: { avatar: true, src: 'http://nickmckendry.surge.sh/static/media/headshot.595807d3.png' },
-          },
-          {
-            text: 'Stevie Feliciano',
-            value: 'Stevie Feliciano',
-            image: { avatar: true, src: 'https://react.semantic-ui.com/assets/images/avatar/small/stevie.jpg' },
-          },
-    ]
+      options: this.props.currentConnections.map(data=>{
+        console.log(data);
+        const option = {
+            text: data.title,
+            value: data.id,
+            image: { avatar: true, src: data.image },
+          }
+        return option
+      })
     }
+    // this.state = {
+    //   options: [
+    //     {
+    //         text: this.props.currentConnections[0].title,
+    //         value: 'Devin Hanaway',
+    //         image: { avatar: true, src: 'http://www.devinhanaway.com/home_profile_pic_circle.png' },
+    //       }
+    // ]
+    // }
   }
-
+  async componentDidMount(){
+    await this.props.getConnections()
+  }
 
   reset() {
     this.setState({ value: undefined })
@@ -42,6 +48,8 @@ export class Requests extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentConnections[0])
+
     const { value } = this.state
 
     return (
@@ -68,4 +76,16 @@ export class Requests extends React.Component {
 const mountNode = document.createElement('div')
 document.body.appendChild(mountNode)
 
-export default(Requests)
+Requests.propTypes = {
+  currentConnections: React.PropTypes.array.isRequired,
+  getConnections: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  console.log(state);
+  return{
+    currentConnections: state.currentConnections.connections
+  }
+}
+
+export default connect(mapStateToProps, {getConnections})(Requests)

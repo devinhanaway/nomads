@@ -7,24 +7,24 @@ import UserList from './UsersComponents/UserList'
 
 import { connect } from 'react-redux'
 
-import { fetchUsers} from './actions'
+import { getConnections} from './actions'
 
 import Nav from './Nav'
 
 
 class User extends Component {
   componentDidMount(){
-    this.props.fetchUsers()
+    this.props.getConnections()
   }
 
   render(){
 
     console.log(this.props);
-    console.log(this.props.users);
+    console.log(this.props.currentConnections);
     return(
       <div className="ui container">
         <Nav />
-        <UserList users={this.props.users} />
+      <UserList currentConnections={this.props.currentConnections} />
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>
           <h3 className="col-md-8">Title</h3>
@@ -37,14 +37,14 @@ class User extends Component {
 }
 
 User.propTypes = {
-  users: React.PropTypes.array.isRequired,
-  fetchUsers: React.PropTypes.func.isRequired
+  currentConnections: React.PropTypes.array.isRequired,
+  getConnections: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
   return{
-    users: state.users
+    currentConnections: state.currentConnections.connections
   }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(User)
+export default connect(mapStateToProps, { getConnections })(User)

@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import Requests from './NavComponents/connectionsRequests'
 import {Icon, Dropdown} from 'semantic-ui-react'
 import propTypes from 'react'
+import {getConnections} from './actions'
+import { connect } from 'react-redux'
 
+//
 
 import ReactDOM from 'react-dom';
 import {
@@ -17,10 +20,22 @@ import {Redirect} from 'react-router-dom'
 
 
 
-export default class Nav extends React.Component {
+export class Nav extends React.Component {
   state = {
-    done: false
+    done: false,
+    connections: [],
+    isLoading: true
   };
+
+  async componentWillMount(){
+    // this.setState({isLoading: true})
+    await this.props.getConnections()
+    this.setState({isLoading: false})
+    return true
+  }
+
+
+
 
 
    logout = (e)=>{
@@ -30,6 +45,8 @@ export default class Nav extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentConnections);
+    // const Requests =(<Requests connections={this.props.connections}/>)
     const nav = (    <div className="ui secondary  menu">
           <Link className="item" to="/simplemap">
             Your Map
@@ -56,7 +73,7 @@ export default class Nav extends React.Component {
               Profile
             </Link>
           </div>
-          <Requests/>
+          {!this.state.isLoading ? <Requests connections={this.props.connections}/>: null}
         </div>
       )
     return (
@@ -66,3 +83,17 @@ export default class Nav extends React.Component {
     );
   }
 }
+Nav.propTypes={
+  connections: React.PropTypes.array.isRequired,
+  getConnections: React.PropTypes.func.isRequired
+}
+function mapStateToProps(state) {
+  console.log(state);
+  return{
+    connections: state.currentConnections.connections
+  }
+}
+
+
+
+export default connect(mapStateToProps, {getConnections})(Nav)

@@ -6,6 +6,7 @@ export const ADD_USER = "ADD_USER"
 export const CURRENT_USER = "CURRENT_USER"
 export const SET_MODAL = "SET_MODAL"
 export const CURRENT_TOKEN = "CURRENT_TOKEN"
+export const CURRENT_CONNECTIONS = "CURRENT_CONNECTIONS"
 
 // function setAuthorizationToken(data){
 //   console.log(data);
@@ -54,6 +55,14 @@ export function currentUser(currentUser){
   return {
     type: CURRENT_USER,
     currentUser
+  }
+}
+
+export function currentConnections(currentConnections){
+  console.log(currentConnections);
+  return {
+    type: CURRENT_CONNECTIONS,
+    currentConnections
   }
 }
 
@@ -154,7 +163,7 @@ export function addConnection(connection){
   const data = decodejwt()
   console.log(data);
   return dispatch => {
-    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data,
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id,
     return fetch('http://localhost:8080/api/connections/new/'+data.id,
     {
      method: 'post',
@@ -167,4 +176,19 @@ export function addConnection(connection){
     .then(handleReponse)
     // .then(data =>{dispatch(getToken(data))})
   }
+}
+
+export function getConnections(){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch =>{
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id,
+    return fetch('http://localhost:8080/api/connections/'+data.id)
+    .then(handleReponse)
+    .then(data =>{
+        console.log(data);
+        console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
+       dispatch(currentConnections(data))
+    })
+   }
 }

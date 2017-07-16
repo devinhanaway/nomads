@@ -48,8 +48,8 @@ ReactDOM.render(
       <Route path='/newuser' component={NewUser} />
       <Route path='/simplemap' component={SimpleMap} />
       <Route path='/login' component={Login} />
-    <Route path='/searchusers' component={SearchUsers} />
-  <Route path='/profile' component={Profile} />
+      <Route path='/searchusers' component={SearchUsers} />
+      <Route path='/profile' component={Profile} />
       </div>
 
     </Provider>
