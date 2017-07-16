@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addConnection } from '../actions'
+import { addRequest } from '../actions'
 
 import { connect } from 'react-redux'
 
@@ -19,12 +19,12 @@ import { connect } from 'react-redux'
 //     location: {user.location},
 //     email: {user.email},
 //   }
-//   this.addConnection(addUser)
+//   this.addRequest(addUser)
 // }
 class UserCard extends React.Component {
   componentDidMount(){
     this.props.user
-    this.props.addConnection
+    this.props.addRequest
   }
   state={
     done: false,
@@ -35,7 +35,7 @@ class UserCard extends React.Component {
   handleClick = (e) => {
     e.preventDefault()
     console.log(this.props.user);
-    this.props.addConnection(this.props.user)
+    this.props.addRequest(this.props.user)
     .then(
       () => {this.setState({done: true})},
       (err)=> err.response.json().then((error)=>
@@ -72,7 +72,7 @@ render(){
 
 UserCard.propTypes = {
   user: React.PropTypes.object.isRequired,
-  addConnection: React.PropTypes.func.isRequired
+  addRequest: React.PropTypes.func.isRequired
 }
 // function mapStateToProps(state) {
 //   return{
@@ -80,4 +80,4 @@ UserCard.propTypes = {
 //   }
 // }
 
-export default connect(null, { addConnection })(UserCard)
+export default connect(null, { addRequest })(UserCard)

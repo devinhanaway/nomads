@@ -214,3 +214,22 @@ export function getRequests(){
     })
    }
 }
+
+export function addRequest(request){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch => {
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id,
+    return fetch('http://localhost:8080/api/users/request/new/'+data.id,
+    {
+     method: 'post',
+     body: JSON.stringify(request),
+     headers: {
+       "Content-Type": "application/json"
+     }
+   }
+  )
+    .then(handleReponse)
+    // .then(data =>{dispatch(getToken(data))})
+  }
+}
