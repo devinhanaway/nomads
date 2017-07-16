@@ -11,7 +11,7 @@ export class Requests extends React.Component {
 		super(props);
 
     this.state = {
-      options: this.props.currentConnections.map(data=>{
+      options: this.props.requests.requests.map(data=>{
         console.log(data);
         const option = {
             text: data.title,
@@ -48,7 +48,7 @@ export class Requests extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentConnections[0])
+    console.log(this.props.requests[0])
 
     const { value } = this.state
 
@@ -77,14 +77,14 @@ const mountNode = document.createElement('div')
 document.body.appendChild(mountNode)
 
 Requests.propTypes = {
-  currentConnections: React.PropTypes.array.isRequired,
+  requests: React.PropTypes.array.isRequired,
   getConnections: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
   console.log(state);
   return{
-    currentConnections: state.currentConnections.connections
+    // requests: state.requestConnections.requests.requests
   }
 }
 

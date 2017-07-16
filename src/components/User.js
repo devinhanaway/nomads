@@ -7,20 +7,19 @@ import UserList from './UsersComponents/UserList'
 
 import { connect } from 'react-redux'
 
-import { getConnections} from './actions'
+import { getConnections } from './actions'
 
 import Nav from './Nav'
 
 
 class User extends Component {
-  componentDidMount(){
+  componentWillMount(){
     this.props.getConnections()
   }
 
   render(){
 
     console.log(this.props);
-    console.log(this.props.currentConnections);
     return(
       <div className="ui container">
         <Nav />

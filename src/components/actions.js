@@ -7,6 +7,7 @@ export const CURRENT_USER = "CURRENT_USER"
 export const SET_MODAL = "SET_MODAL"
 export const CURRENT_TOKEN = "CURRENT_TOKEN"
 export const CURRENT_CONNECTIONS = "CURRENT_CONNECTIONS"
+export const REQUEST_CONNECTIONS = "REQUEST_CONNECTIONS"
 
 // function setAuthorizationToken(data){
 //   console.log(data);
@@ -63,6 +64,13 @@ export function currentConnections(currentConnections){
   return {
     type: CURRENT_CONNECTIONS,
     currentConnections
+  }
+}
+export function requestConnections(requestConnections){
+  console.log(requestConnections);
+  return {
+    type: REQUEST_CONNECTIONS,
+    requestConnections
   }
 }
 
@@ -189,6 +197,20 @@ export function getConnections(){
         console.log(data);
         console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
        dispatch(currentConnections(data))
+    })
+   }
+}
+export function getRequests(){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch =>{
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id,
+    return fetch('http://localhost:8080/api/users/request/'+data.id)
+    .then(handleReponse)
+    .then(data =>{
+        console.log(data);
+        console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
+       dispatch(requestConnections(data))
     })
    }
 }
