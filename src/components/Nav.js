@@ -48,7 +48,7 @@ export class Nav extends React.Component {
     console.log(this.props.requests);
     // const Requests =(<Requests connections={this.props.connections}/>)
     const nav = (    <div className="ui secondary  menu">
-          <Link className="item" to="/simplemap">
+          <Link className="item" to="/map">
             Your Map
           </Link>
           <Link className="item" to="/searchusers">

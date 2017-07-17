@@ -15,9 +15,17 @@ import Nav from './Nav'
 class User extends Component {
   componentWillMount(){
     this.props.getConnections()
+    return true
   }
 
   render(){
+    if (!this.props.currentConnections){
+      return (<div>Waiting for users to load</div>)
+    }
+    if (this.props.currentConnections.length === 0 ){
+      return (<div>Waiting for users to load</div>)
+    }
+
 
     console.log(this.props);
     return(
