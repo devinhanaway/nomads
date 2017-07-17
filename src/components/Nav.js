@@ -27,7 +27,7 @@ export class Nav extends React.Component {
     isLoading: true
   };
 
-  async componentWillMount(){
+  async componentDidMount(){
     // this.setState({isLoading: true})
     await this.props.getRequests()
     this.setState({isLoading: false})

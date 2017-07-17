@@ -10,19 +10,14 @@ import { getConnections } from './actions'
 import { getLatLng } from './cleanLocation'
 
 class MapNetwork extends Component {
-  state = {
-        isLoading: true
-  }
-  componentWillMount(){
-    this.props.getConnections()
-    console.log(this.props.currentConnections);
-
-  }
   constructor() {
     super()
     this.state = {
+      zoom: 3,
+      isLoading: false,
+      locations:[],
       person:{
-        lat: 51.505,
+        lat: "",
         lng: -0.09,
         zoom: 3
       },
@@ -37,59 +32,93 @@ class MapNetwork extends Component {
     }
   }
 
+  async componentWillMount(){
+
+    await this.props.getConnections()
+    console.log(this.props.currentConnections,"Hey look at this I am tring to figure something out");
+    console.log("IS THIS EVER EVEN HAPPENING ");
+    console.log(this.state,"this should say false ************");
+
+    const makeRequest = async () => {
+       const item = await Promise.all(this.props.currentConnections.map(async (data)=>{
+        console.log('!!!data. location!!!!',data);
+        data.location = await this.props.getLatLng(data.location)
+        console.log("hopefully this is a clean user",data);
+        //  this.setState({locations: })
+        return data
+      }))
+      console.log(item,"This is a test to see if my location item is ");
+      this.setState({isLoading: true})
+      return await item
+    }
+
+    if (this.state.isLoading === false){
+      console.log("Why is nothing working ");
+      this.setState({isLoading: "pending"})
+      makeRequest().then(data=>{
+        console.log(data,"******Hey this is a really important log, so please pay attention simethingn is hwere****");
+        this.setState({locations: data})
+        console.log(this.state.locations);
+        this.setState({isLoading: true})
+        console.log(this.state.locations,"What if  this actually works!!!!!!!!!");
+      })
+    }
+    return true
+  }
+
+
+
+
   render() {
 
+
+
       if (!this.props.currentConnections){
-        return (<div>Waiting for users to load</div>)
+        return (<div>Waiting for users to load number 1 !!!!!</div>)
       }
       if (this.props.currentConnections.length === 0 ){
         return (<div>Waiting for users to load</div>)
       }
-      console.log(this.props.currentConnections);
+      if(this.state.isLoading === false || this.state.isLoading === "pending"){
+        return (<div>Waiting for locations to load</div>)}else{
 
-      // const test = this.props.currentConnections.forEach(data=>{
-      //   console.log(data);
-      //   this.props.getLatLng(data.location).then(item=>{
-      //      console.log(item);
-      // })
-      //
-      // })
+      console.log(this.state.locations);
 
-      // const test = this.props.currentConnections.forEach(data=>{
-      //   console.log(data);
-      //   getLatLng(data.location)
 
-    console.log(this.props);
+      const createMarker = ()=>{
+        console.log("Is this being called in my Map??????");
+        return this.state.locations.map(data=>{
+          return (
+            <Marker key={data.id} position={[data.location.lat, data.location.lng]}>
+              <Popup>
+                <span>{data.title}<br/></span>
+              </Popup>
+            </Marker>
+          )
+        })
+      }
+      const markers = createMarker()
+      console.log(markers,"These are all of the markers");
+
+
+
     const position = [this.state.person.lat, this.state.person.lng];
-    const position2 = [this.state.person2.lat, this.state.person2.lng];
-    const position3 = [this.state.person3.lat, this.state.person3.lng];
+
 
     return (
       <div >
         <Nav/>
-        <Map className="leaflet-container" center={position} zoom={this.state.person.zoom}>
+        <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
               />
-              <Marker position={position}>
-                <Popup>
-                  <span>{this.props.currentConnections[1].title}<br/> Not Denver</span>
-                </Popup>
-              </Marker>
-              <Marker position={position2}>
-                <Popup>
-                  <span>{this.props.currentConnections[0].title}<br/> Not Denver.</span>
-                </Popup>
-              </Marker>
-              <Marker position={position3}>
-                <Popup>
-                  <span>Random Dude <br/> something.</span>
-                </Popup>
-              </Marker>
+
+            {this.state.isLoading === true ? createMarker(): null}
             </Map>
     </div>
     );
+  }
   }
 }
 

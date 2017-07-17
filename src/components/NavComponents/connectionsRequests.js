@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Container, Divider, Dropdown, Label, Icon} from 'semantic-ui-react'
 
-import {getConnections} from '../actions'
+// import {getConnections} from '../actions'
 
 import { connect } from 'react-redux'
 
@@ -17,6 +17,7 @@ export class Requests extends React.Component {
             text: data.title,
             value: data.id,
             image: { avatar: true, src: data.image },
+            key: data.id
           }
         return option
       })
@@ -31,9 +32,9 @@ export class Requests extends React.Component {
     // ]
     // }
   }
-  async componentDidMount(){
-    await this.props.getConnections()
-  }
+  // async componentDidMount(){
+  //   await this.props.getConnections()
+  // }
 
   reset() {
     this.setState({ value: undefined })
@@ -78,7 +79,7 @@ document.body.appendChild(mountNode)
 
 Requests.propTypes = {
   requests: React.PropTypes.array.isRequired,
-  getConnections: React.PropTypes.func.isRequired
+  // getConnections: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
@@ -88,4 +89,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getConnections})(Requests)
+export default connect(mapStateToProps)(Requests)
