@@ -10,6 +10,9 @@ import { connect } from 'react-redux'
 import { getConnections } from './actions'
 
 import Nav from './Nav'
+import {
+  Link
+} from 'react-router-dom'
 
 
 class User extends Component {
@@ -20,10 +23,27 @@ class User extends Component {
 
   render(){
     if (!this.props.currentConnections){
-      return (<div>Waiting for users to load</div>)
+      return (<div>
+         <Nav />
+       <div>
+       <span>You Don't Have Any Connections Yet, Tell you fellow Nomads to create an Account and Start mapping one another</span>
+       <Link className="item" to="/searchusers">
+         Add Conncetions
+       </Link>
+      </div>
+         </div>)
     }
     if (this.props.currentConnections.length === 0 ){
-      return (<div>Waiting for users to load</div>)
+      return (<div>
+         <Nav />
+         <div className="ui center aligned icon header container padding">
+         <span>You Don't Have Any Connections Yet, Tell you fellow Nomads to create an Account and Start mapping one another</span>
+         <Link className="item" to="/searchusers">
+           Add Conncetions
+         </Link>
+        </div>
+       
+         </div>)
     }
 
 

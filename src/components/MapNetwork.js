@@ -71,13 +71,24 @@ class MapNetwork extends Component {
 
   render() {
 
+    const position = [this.state.person.lat, this.state.person.lng];
 
 
       if (!this.props.currentConnections){
         return (<div>Waiting for users to load number 1 !!!!!</div>)
       }
       if (this.props.currentConnections.length === 0 ){
-        return (<div>Waiting for users to load</div>)
+        return (    <div >
+              <Nav/>
+              <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
+                    <TileLayer
+                      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                      url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                    />
+
+
+                  </Map>
+          </div>)
       }
       if(this.state.isLoading === false || this.state.isLoading === "pending"){
         return (<div>Waiting for locations to load</div>)}else{
@@ -102,7 +113,6 @@ class MapNetwork extends Component {
 
 
 
-    const position = [this.state.person.lat, this.state.person.lng];
 
 
     return (
