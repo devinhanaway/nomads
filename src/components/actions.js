@@ -225,9 +225,11 @@ export function getRequests(){
 export function addRequest(request){
   const data = decodejwt()
   console.log(data);
+  console.log(request);
+  console.log(request._id);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/new/'+data.id,
-    return fetch('http://localhost:8080/api/users/request/new/'+request.id,
+    return fetch('http://localhost:8080/api/users/request/new/'+request._id,
     {
      method: 'post',
      body: JSON.stringify(data),

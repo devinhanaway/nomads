@@ -12,7 +12,7 @@ export class Requests extends React.Component {
 
     this.state = {
       options: this.props.requests.map(data=>{
-        console.log(data);
+        console.log(data,"this is the data I'm passing into dropdown");
         const option = {
             text: data.title,
             value: data._id,
