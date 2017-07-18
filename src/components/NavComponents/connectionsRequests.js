@@ -14,10 +14,10 @@ export class Requests extends React.Component {
       options: this.props.requests.map(data=>{
         console.log(data);
         const option = {
-            // text: data.title,
-            value: data.id,
-            // image: { avatar: true, src: data.image },
-            key: data.id
+            text: data.title,
+            value: data._id,
+            image: { avatar: true, src: data.image },
+            key: data._id
           }
         return option
       })

@@ -227,10 +227,10 @@ export function addRequest(request){
   console.log(data);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/new/'+data.id,
-    return fetch('http://localhost:8080/api/users/request/new/'+data.id,
+    return fetch('http://localhost:8080/api/users/request/new/'+request.id,
     {
      method: 'post',
-     body: JSON.stringify(request),
+     body: JSON.stringify(data),
      headers: {
        "Content-Type": "application/json"
      }
