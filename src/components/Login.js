@@ -57,12 +57,14 @@ export class Login extends Component {
           this.props.loginUserAuth(userCred)
           .then(
             () => {this.setState({done: true})},
-            (err)=> err.response.json().then((error)=>
+            (err)=> {
+              console.log(err.respone);
+              err.response.json().then((error)=>
             {
               console.log(error);
               this.setState({errors: { global: error.message}, loading: false})
               console.log(this.state.errors);
-          })
+          })}
           )
 
     }

@@ -7,7 +7,7 @@ import UserList from './AddUsersComponents/UserList'
 
 import { connect } from 'react-redux'
 
-import { fetchUsers} from './actions'
+import { fetchUsers } from './actions'
 // import { addConnection} from './actions'
 import {
   Link
@@ -17,25 +17,27 @@ import Nav from './Nav'
 
 
 class SearchUsers extends Component {
-  constructor() {
+
+  constructor(){
     super()
     this.state = {
-      isLoading: "pending",
+    isLoading: "pending",
     }
   }
-  async omponentWillMount(){
-    this.setState({isLoading: true})
-    await this.props.fetchUsers()
-    this.setState({isLoading: false})
+   async componentWillMount(){
+     console.log("is this ever running?");
+
+      await this.props.fetchUsers()
+      await this.setState({isLoading: false})
+
   }
 
   render(){
 
-  //   if(this.state.isLoading === false || this.state.isLoading === "pending"){
+  //   if(this.state.isLoading === true || this.state.isLoading === "pending"){
   //     return(
   //     <div>
-  //         <Nav />
-  //         <div className="ui center aligned icon header container padding">
+  //         {this.state.isLoading === false ? <Nav />: null}          <div className="ui center aligned icon header container padding">
   //         <span>You are the very first user on the site, congrats</span>
   //        </div>
   //      </div>
@@ -43,8 +45,8 @@ class SearchUsers extends Component {
   //  }else{
     return(
       <div className="ui container">
-        <Nav />
-      <UserList  users={this.props.users} />
+          {this.state.isLoading === false ? <Nav />: null}
+      {this.state.isLoading === false ? <UserList  users={this.props.users}/>: null}
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>
           <h3 className="col-md-8">Title</h3>
@@ -54,7 +56,7 @@ class SearchUsers extends Component {
       </div>
     )
   // }
-  }
+   }
 }
 
 SearchUsers.propTypes = {

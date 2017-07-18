@@ -40,14 +40,13 @@ const render = () => {
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-
       <div className="ui">
 
-      <Route path='/' component={App} />
+      <Route exactpath='/' component={App} />
       <Route path='/User' component={User} />
       <Route path='/landing' component={Landing} />
       <Route path='/newuser' component={NewUser} />
-    <Route path='/map' component={MapNetwork} />
+      <Route path='/map' component={MapNetwork} />
       <Route path='/login' component={Login} />
       <Route path='/searchusers' component={SearchUsers} />
       <Route path='/profile' component={Profile} />

@@ -4,12 +4,12 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect
+  Redirect,
 } from 'react-router-dom'
-import Landing from './components/Landing'
 
 
 class App extends Component {
+
   render() {
 
 
@@ -18,7 +18,7 @@ class App extends Component {
 
     return (
       <div >
-        <Redirect exactpath="/landing"/>
+        {/* <Redirect to="./landing"/> */}
         {/* <Landing/> */}
         {/* <div className="ui three item menu container">
         <Link className="item" to="/landing">Home</Link>

@@ -3,7 +3,7 @@ import { SET_USERS, ADD_USER, CURRENT_USER, CURRENT_TOKEN} from '../components/a
 
 export default function Users(state = [], action = {}){
   console.log(SET_USERS);
-  console.log(action.user);
+  console.log(action.users);
   switch(action.type){
     case ADD_USER:
       return [
@@ -17,6 +17,7 @@ export default function Users(state = [], action = {}){
         ...state,
         action.token
       ]
+      console.log(state);
     default: return state;
   }
 }

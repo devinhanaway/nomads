@@ -22,6 +22,7 @@ class Profile extends Component {
     }
   }
   async componentWillMount(){
+    console.log("why does this work here?????");
     await this.props.current()
      this.setState({isLoading: false})
      return true

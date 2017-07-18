@@ -17,6 +17,7 @@ import {
 
 class User extends Component {
   componentWillMount(){
+    console.log("is this working over here?????? in my connections / users ");
     this.props.getConnections()
     return true
   }
@@ -42,7 +43,7 @@ class User extends Component {
            Add Conncetions
          </Link>
         </div>
-       
+
          </div>)
     }
 

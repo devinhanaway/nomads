@@ -37,6 +37,7 @@ function handleReponse(response){
 
 
 export function setUsers(users){
+  console.log(users);
   return {
     type: SET_USERS,
     users
@@ -112,6 +113,7 @@ export function Signup(data){
       }
     }).then(handleReponse)
     .then(data =>{
+      console.log(data);
       localStorage.setItem('jwtToken', data.token)
       console.log(data.token);
           dispatch(addUser(data.token))
@@ -161,11 +163,14 @@ export function loginUserAuth(data){
 
 
 export function fetchUsers() {
+  "Is this happening"
   return dispatch => {
     // fetch('https://nomadsapp.herokuapp.com/api/users')
     fetch('http://localhost:8080/api/users')
       .then(res => res.json())
-      .then(data => dispatch(setUsers(data.user)))
+      .then(data => {
+        console.log(data.user);
+        dispatch(setUsers(data.user))})
   }
 }
 
