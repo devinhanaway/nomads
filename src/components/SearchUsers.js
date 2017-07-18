@@ -9,17 +9,38 @@ import { connect } from 'react-redux'
 
 import { fetchUsers} from './actions'
 // import { addConnection} from './actions'
-
+import {
+  Link
+} from 'react-router-dom'
 
 import Nav from './Nav'
 
 
 class SearchUsers extends Component {
-  componentDidMount(){
-    this.props.fetchUsers()
+  constructor() {
+    super()
+    this.state = {
+      isLoading: "pending",
+    }
+  }
+  async omponentWillMount(){
+    this.setState({isLoading: true})
+    await this.props.fetchUsers()
+    this.setState({isLoading: false})
   }
 
   render(){
+
+  //   if(this.state.isLoading === false || this.state.isLoading === "pending"){
+  //     return(
+  //     <div>
+  //         <Nav />
+  //         <div className="ui center aligned icon header container padding">
+  //         <span>You are the very first user on the site, congrats</span>
+  //        </div>
+  //      </div>
+  //    )
+  //  }else{
     return(
       <div className="ui container">
         <Nav />
@@ -32,6 +53,7 @@ class SearchUsers extends Component {
         </div> */}
       </div>
     )
+  // }
   }
 }
 
@@ -41,9 +63,6 @@ SearchUsers.propTypes = {
   // addConnection: React.PropTypes.func.isRequired
 }
 
-SearchUsers.defaultProps= {
-  users: []
-}
 
 function mapStateToProps(state) {
   return{

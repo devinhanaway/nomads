@@ -16,19 +16,7 @@ class MapNetwork extends Component {
       zoom: 3,
       isLoading: false,
       locations:[],
-      person:{
-        lat: "",
-        lng: -0.09,
-        zoom: 3
-      },
-      person2:{
-        lat: 41.505,
-        lng: -0.09,
-      },
-      person3:{
-        lat: 31.505,
-        lng: -0.09,
-      }
+
     }
   }
 
@@ -71,7 +59,7 @@ class MapNetwork extends Component {
 
   render() {
 
-    const position = [this.state.person.lat, this.state.person.lng];
+    const position = [105, 40];
 
 
       if (!this.props.currentConnections){

@@ -84,7 +84,7 @@ export class User extends Component {
           value={this.state.email}
           onChange={this.handleChange}
           id="email"
-          placeholder="first, last"
+          placeholder="enter your email"
         />
       <span>{this.state.errors.email}</span>
       </div>
@@ -95,7 +95,7 @@ export class User extends Component {
           value={this.state.password}
           onChange={this.handleChange}
           id="password"
-          placeholder="first, last"
+          placeholder="passwords are a good thing to have"
         />
       <span>{this.state.errors.password}</span>
       </div>
@@ -106,7 +106,7 @@ export class User extends Component {
           value={this.state.passwordConfirmation}
           onChange={this.handleChange}
           id="passwordConfirmation"
-          placeholder="first, last"
+          placeholder="please confirm your password"
         />
       <span>{this.state.errors.passwordConfirmation}</span>
       </div>

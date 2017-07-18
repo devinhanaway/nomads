@@ -15,13 +15,31 @@ const testItem = localStorage.getItem('jwtToken');
 
 
 class Profile extends Component {
-  componentDidMount(){
-    this.props.current()
+  constructor() {
+    super()
+    this.state = {
+      isLoading: "pending",
+    }
+  }
+  async componentWillMount(){
+    await this.props.current()
+     this.setState({isLoading: false})
+     return true
   }
 
 
   render(){
-    // console.log(this.props.current(testItem));
+
+    if(this.state.isLoading === true || this.state.isLoading === "pending"){
+      return(
+      <div>
+          {/* <Nav /> */}
+          <div className="ui center aligned icon header container padding">
+          <span>Making sure your password and information is protected is key for us, sorry for the delay</span>
+         </div>
+       </div>
+     )
+   } else{
     console.log(this.props.currentUser);
     console.log(this.props);
     console.log("jknwefkjwnfjkn wknewclkwenklwn lkendwleknf");
@@ -37,6 +55,7 @@ class Profile extends Component {
         </div> */}
       </div>
     )
+  }
   }
 }
 

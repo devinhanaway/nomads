@@ -3,18 +3,22 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom'
 import Landing from './components/Landing'
 
+
 class App extends Component {
   render() {
+
 
 
   //mapStateToProp
 
     return (
       <div >
+        <Redirect exactpath="/landing"/>
         {/* <Landing/> */}
         {/* <div className="ui three item menu container">
         <Link className="item" to="/landing">Home</Link>

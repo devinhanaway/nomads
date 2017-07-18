@@ -104,7 +104,7 @@ export function Modal(data){
 export function Signup(data){
   return dispatch => {
     //  return fetch('https://nomadsapp.herokuapp.com/api/users/new', {
-    //  return fetch('http://localhost:8080/api/users/new', {
+    return fetch('http://localhost:8080/api/users/new', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -129,7 +129,9 @@ export function current(){
     // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id)
     return fetch('http://localhost:8080/api/users/'+data.id)
     .then(handleReponse)
-    .then(data => dispatch(currentUser(data.currentUser)))
+    .then(data => {
+      console.log(data);
+      dispatch(currentUser(data.currentUser))})
   }
 
 }
@@ -160,8 +162,8 @@ export function loginUserAuth(data){
 
 export function fetchUsers() {
   return dispatch => {
-    fetch('https://nomadsapp.herokuapp.com/api/users')
-    // fetch('http://localhost:8080/api/users')
+    // fetch('https://nomadsapp.herokuapp.com/api/users')
+    fetch('http://localhost:8080/api/users')
       .then(res => res.json())
       .then(data => dispatch(setUsers(data.user)))
   }
@@ -171,8 +173,8 @@ export function addConnection(connection){
   const data = decodejwt()
   console.log(data);
   return dispatch => {
-    // return fetch('https://nomadsapp.herokuapp.com/api/connections/new/'+data.id,
-    return fetch('http://localhost:8080/api/connections/new/'+data.id,
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/new/'+data.id,
+    return fetch('http://localhost:8080/api/users/connections/new/'+data.id,
     {
      method: 'post',
      body: JSON.stringify(connection),
@@ -190,8 +192,8 @@ export function getConnections(){
   const data = decodejwt()
   console.log(data);
   return dispatch =>{
-    // return fetch('https://nomadsapp.herokuapp.com/api/connections/'+data.id)
-    return fetch('http://localhost:8080/api/connections/'+data.id)
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+data.id)
+    return fetch('http://localhost:8080/api/users/connections/'+data.id)
     .then(handleReponse)
     .then(data =>{
         console.log(data);
@@ -207,11 +209,11 @@ export function getRequests(){
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/'+data.id)
     return fetch('http://localhost:8080/api/users/request/'+data.id)
     .then(handleReponse)
-    .then(data =>{
-        console.log(data);
-        console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
-       dispatch(requestConnections(data))
-    })
+    // .then(data =>{
+    //     console.log(data);
+    //     console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
+    //    dispatch(requestConnections(data))
+    // })
    }
 }
 

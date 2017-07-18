@@ -21,17 +21,27 @@ import {Redirect} from 'react-router-dom'
 
 
 export class Nav extends React.Component {
-  state = {
-    done: false,
-    connections: [],
-    isLoading: true
-  };
+    constructor(){
+      super()
+    this.state = {
+      done: false,
+      connections: [],
+      isLoading: true,
+      loadRequests: "true"
+    }
+  }
 
-  async componentDidMount(){
-    // this.setState({isLoading: true})
-    await this.props.getRequests()
-    this.setState({isLoading: false})
-    return true
+ componentDidMount(){
+    this.setState({isLoading: true})
+    this.props.getRequests().then(data=>
+      {
+        console.log("What are my requests?????",data);
+        if (data.requests === null || data.requests.requests.length === 0){
+        this.setState({loadRequests: true})
+      }else{
+        this.setState({loadRequests: false})
+      }
+    })
   }
 
 
@@ -45,7 +55,80 @@ export class Nav extends React.Component {
   }
 
   render() {
-    console.log(this.props.requests);
+    if(this.state.loadRequests === true){
+      const initialNav = (
+        <div className="ui secondary  menu">
+              <Link className="item" to="/map">
+                Your Map
+              </Link>
+              <Link className="item" to="/searchusers">
+                Add Conncetions
+              </Link>
+              <Link className="item" to="/user">
+                Your Nomads
+              </Link>
+
+
+              <div className="right menu">
+                <div className="item">
+                  <div className="ui icon input">
+                    <input type="text" placeholder="Search..."/>
+                    <i className="search link icon"></i>
+                  </div>
+                </div>
+                <Link className="item" onClick={this.logout} to="/landing">
+                  Logout
+                </Link>
+                <Link className="item" to="/profile">
+                  Profile
+                </Link>
+              </div>
+            </div>
+      )
+      return (
+        <div>
+          {this.state.done ? <Redirect to='/landing'/>: initialNav}
+        </div>)
+    } else if(this.props.requests === null ||this.props.requests.length === 0 ){
+      const initialNav = (
+        <div className="ui secondary  menu">
+              <Link className="item" to="/map">
+                Your Map
+              </Link>
+              <Link className="item" to="/searchusers">
+                Add Conncetions
+              </Link>
+              <Link className="item" to="/user">
+                Your Nomads
+              </Link>
+
+
+              <div className="right menu">
+                <div className="item">
+                  <div className="ui icon input">
+                    <input type="text" placeholder="Search..."/>
+                    <i className="search link icon"></i>
+                  </div>
+                </div>
+                <Link className="item" onClick={this.logout} to="/landing">
+                  Logout
+                </Link>
+                <Link className="item" to="/profile">
+                  Profile
+                </Link>
+              </div>
+            </div>
+      )
+      return (
+        <div>
+          {this.state.done ? <Redirect to='/landing'/>: initialNav}
+        </div>
+
+      )
+    }
+
+
+
     // const Requests =(<Requests connections={this.props.connections}/>)
     const nav = (    <div className="ui secondary  menu">
           <Link className="item" to="/map">
@@ -73,7 +156,7 @@ export class Nav extends React.Component {
               Profile
             </Link>
           </div>
-          {!this.state.isLoading ? <Requests requests={this.props.requests}/>: null}
+          {this.state.loadRequests === false ? <Requests requests={this.props.requests}/>: null}
         </div>
       )
     return (
@@ -81,12 +164,18 @@ export class Nav extends React.Component {
         {this.state.done ? <Redirect to='/landing'/>: nav}
       </div>
     );
+  // }
   }
 }
 Nav.propTypes={
   requests: React.PropTypes.array.isRequired,
   getRequests: React.PropTypes.func.isRequired
 }
+
+Nav.defaultProps={
+  requests: React.PropTypes.array
+}
+
 function mapStateToProps(state) {
   console.log(state);
   return{
@@ -96,4 +185,5 @@ function mapStateToProps(state) {
 
 
 
+// export default connect(null, {getRequests})(Nav)
 export default connect(mapStateToProps, {getRequests})(Nav)
