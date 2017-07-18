@@ -60,7 +60,7 @@ render(){
       </div>
       <div className="content">
         <div className="header">{this.props.user.title}</div>
-      <div className="content">Loction: {this.props.user.location}</div>
+      <div className="content">Currently Living: {this.props.user.location}</div>
     <div className="email">Email: {this.props.user.email}</div>
       </div>
       {!this.state.done && <button disabled={this.state.done} onClick={this.handleClick}>Add Nomad</button>}

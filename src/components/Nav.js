@@ -27,7 +27,8 @@ export class Nav extends React.Component {
       done: false,
       connections: [],
       isLoading: true,
-      loadRequests: "true"
+      loadRequests: "true",
+      requests:[]
     }
   }
 
@@ -39,6 +40,8 @@ export class Nav extends React.Component {
         if (data.requests === null || data.requests.requests.length === 0){
         this.setState({loadRequests: true})
       }else{
+        this.setState({requests: data.requests})
+        console.log(this.state.requests);
         this.setState({loadRequests: false})
       }
     })
@@ -89,7 +92,7 @@ export class Nav extends React.Component {
         <div>
           {this.state.done ? <Redirect to='/landing'/>: initialNav}
         </div>)
-    } else if(this.props.requests === null ||this.props.requests.length === 0 ){
+    } else if(this.state.requests === null ||this.state.requests.length === 0 ){
       const initialNav = (
         <div className="ui secondary  menu">
               <Link className="item" to="/map">
@@ -125,9 +128,9 @@ export class Nav extends React.Component {
         </div>
 
       )
-    }
+    }else{
 
-
+      console.log(this.state.requests.requests);
 
     // const Requests =(<Requests connections={this.props.connections}/>)
     const nav = (    <div className="ui secondary  menu">
@@ -156,7 +159,7 @@ export class Nav extends React.Component {
               Profile
             </Link>
           </div>
-          {this.state.loadRequests === false ? <Requests requests={this.props.requests}/>: null}
+          {this.state.loadRequests === false ? <Requests requests={this.state.requests.requests}/>: null}
         </div>
       )
     return (
@@ -164,7 +167,7 @@ export class Nav extends React.Component {
         {this.state.done ? <Redirect to='/landing'/>: nav}
       </div>
     );
-  // }
+  }
   }
 }
 Nav.propTypes={

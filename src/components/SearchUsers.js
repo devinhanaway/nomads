@@ -53,6 +53,7 @@ class SearchUsers extends Component {
           <h5>Post Content</h5>
           <button className="btn btn-info">Edit Post</button>
         </div> */}
+        
       </div>
     )
   // }
