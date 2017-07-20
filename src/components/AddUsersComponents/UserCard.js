@@ -4,6 +4,9 @@ import { addRequest } from '../actions'
 
 import { connect } from 'react-redux'
 
+import {Button,Trigger, Container,Grid, Divider, Dropdown, Popup, Label, Icon} from 'semantic-ui-react'
+
+
 
 
 // console.log({user});
@@ -62,8 +65,11 @@ render(){
         <div className="header">{this.props.user.title}</div>
       <div className="content">Currently Living: {this.props.user.location}</div>
     <div className="email">Email: {this.props.user.email}</div>
+  <div className="ui center aligned icon header container padding">
+  <button className="center small header">{!this.state.done && <Icon className="user center small plus" onHover="mouse" disabled={this.state.done} onClick={this.handleClick}></Icon>}</button>
+  </div>
       </div>
-      {!this.state.done && <button disabled={this.state.done} onClick={this.handleClick}>Add Nomad</button>}
+
   </div>
   )
 // }

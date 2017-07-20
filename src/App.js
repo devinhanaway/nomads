@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import {
   BrowserRouter as Router,
   Route,
@@ -17,6 +18,7 @@ class App extends Component {
   //mapStateToProp
 
     return (
+      <MuiThemeProvider>
       <div >
         {/* <Redirect to="./landing"/> */}
         {/* <Landing/> */}
@@ -28,6 +30,7 @@ class App extends Component {
         </div> */}
 
       </div>
+    </MuiThemeProvider>
 
     );
   }

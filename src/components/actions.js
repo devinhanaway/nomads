@@ -1,4 +1,4 @@
-import {fetchJSON, decodejwt, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
+   import {fetchJSON, decodejwt, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
 
 
 export const SET_USERS = "SET_USERS"
@@ -174,54 +174,6 @@ export function fetchUsers() {
   }
 }
 
-export function addConnection(connection){
-  const data = decodejwt()
-  console.log(data);
-  return dispatch => {
-    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/new/'+data.id,
-    return fetch('http://localhost:8080/api/users/connections/new/'+data.id,
-    {
-     method: 'post',
-     body: JSON.stringify(connection),
-     headers: {
-       "Content-Type": "application/json"
-     }
-   }
-  )
-    .then(handleReponse)
-    // .then(data =>{dispatch(getToken(data))})
-  }
-}
-
-export function getConnections(){
-  const data = decodejwt()
-  console.log(data);
-  return dispatch =>{
-    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+data.id)
-    return fetch('http://localhost:8080/api/users/connections/'+data.id)
-    .then(handleReponse)
-    .then(data =>{
-        console.log(data);
-        console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
-       dispatch(currentConnections(data))
-    })
-   }
-}
-export function getRequests(){
-  const data = decodejwt()
-  console.log(data);
-  return dispatch =>{
-    // return fetch('https://nomadsapp.herokuapp.com/api/users/request/'+data.id)
-    return fetch('http://localhost:8080/api/users/request/'+data.id)
-    .then(handleReponse)
-    // .then(data =>{
-    //     console.log(data);
-    //     console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
-    //    dispatch(requestConnections(data))
-    // })
-   }
-}
-
 export function addRequest(request){
   const data = decodejwt()
   console.log(data);
@@ -241,4 +193,79 @@ export function addRequest(request){
     .then(handleReponse)
     // .then(data =>{dispatch(getToken(data))})
   }
+}
+export function addConnection(connection){
+  const data = decodejwt()
+  console.log(data.id);
+  console.log(connection);
+  console.log(connection._id);
+  return dispatch => {
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/connection/'+data.id,
+    return fetch('http://localhost:8080/api/users/connections/'+data.id,
+    {
+     method: 'post',
+     body: JSON.stringify(connection),
+     headers: {
+       "Content-Type": "application/json"
+     }
+   }
+  )
+    .then(handleReponse)
+    // .then(data =>{dispatch(getToken(data))})
+  }
+}
+
+
+// export function addConnection(connection){
+//   const data = decodejwt()
+//   console.log(data.id);
+//   console.log("These are going to add", connection);
+//   return dispatch => {
+//     // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/new/'+data.id,
+//     return fetch('http://localhost:8080/api/users/connections/'+data.id,
+//     {
+//      method: 'post',
+//      body: JSON.stringify(connection),
+//      headers: {
+//        "Content-Type": "application/json"
+//      }
+//    }
+//   )
+//     .then(handleReponse)
+//     // .then(data =>{dispatch(getToken(data))})
+//   }
+// }
+
+export function getConnections(){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch =>{
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+data.id)
+    return fetch('http://localhost:8080/api/users/connections/'+data.id)
+    .then(handleReponse)
+    .then(data =>{
+        console.log(data);
+        console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
+       dispatch(currentConnections(data))
+    })
+   }
+}
+
+
+export function getRequests(){
+  const data = decodejwt()
+  console.log(data);
+  return dispatch =>{
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/request/'+data.id)
+    return fetch('http://localhost:8080/api/users/request/'+data.id)
+    .then(handleReponse)
+    .catch((err)=>{
+       console.log("failled",err)
+     })
+        // .then(data =>{
+    //     console.log(data);
+    //     console.log("!!!!!dlfnweljfnwelfb!!!!!!!");
+    //    dispatch(requestConnections(data))
+    // })
+   }
 }

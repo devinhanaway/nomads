@@ -13,7 +13,7 @@ class MapNetwork extends Component {
   constructor() {
     super()
     this.state = {
-      zoom: 3,
+      zoom: 5,
       isLoading: false,
       locations:[],
 
@@ -59,7 +59,7 @@ class MapNetwork extends Component {
 
   render() {
 
-    const position = [105, 40];
+    const position = [39.742043, -104.991531]
 
 
       if (!this.props.currentConnections){
@@ -68,7 +68,7 @@ class MapNetwork extends Component {
       if (this.props.currentConnections.length === 0 ){
         return (    <div >
               <Nav/>
-              <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
+            <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
                     <TileLayer
                       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                       url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'

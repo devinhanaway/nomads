@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Container, Divider, Dropdown, Label, Icon} from 'semantic-ui-react'
+import {Button,Trigger, Container,Grid, Divider, Dropdown, Popup, Label, Icon} from 'semantic-ui-react'
 
 // import {getConnections} from '../actions'
 
@@ -17,10 +17,12 @@ export class Requests extends React.Component {
             text: data.title,
             value: data._id,
             image: { avatar: true, src: data.image },
-            key: data._id
+            key: data._id,
+            button: {icon:"accept"},
+            trigger: {}
           }
         return option
-      })
+      }),
     }
     // this.state = {
     //   options: [
@@ -49,10 +51,12 @@ export class Requests extends React.Component {
   }
 
   render() {
-    console.log(this.props.requests[0])
 
     const { value } = this.state
 
+    // const trigger = (
+    //                       <Button basic labeled="right" icon='down chevron' content={value} />
+    //                     );
     return (
       <Container>
 
@@ -61,8 +65,11 @@ export class Requests extends React.Component {
           options={this.state.options}
           selection
           value={value}
-          text="Connection Requests"
-        />
+          button="Connection Requests"
+        >
+
+
+        </Dropdown>
 
 
 

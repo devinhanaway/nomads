@@ -8,7 +8,7 @@ export default function UserCard({currentUser}){
       </div>
       <div className="content">
         <div className="header">{currentUser.title}</div>
-      <div className="content">Loction: {currentUser.location}</div>
+      <div className="content">Current Home: {currentUser.location}</div>
     <div className="email">Email: {currentUser.email}</div>
       </div>
     </div>
