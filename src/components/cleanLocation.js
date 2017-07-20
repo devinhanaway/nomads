@@ -28,10 +28,6 @@ export function getLatLng(lngLat) {
   console.log(lngLat, "Is Arvada really in Germany????****************");
 
 
-  const city = lngLat[0]
-  const state = lngLat[1]
-  const country = lngLat[2]
-  // console.log(country);
 
 
     const key = "&key=AIzaSyALtzDfOHTgJgfG1Uz22M9AT_C57F69HFo"

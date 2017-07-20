@@ -8,13 +8,13 @@ export default function UserList({ currentConnections }) {
 
   const userList = (
     <div className="ui four cards">
-      {currentConnections.map(user => <UserCard user={user} key={user._id}/>)}
+      {currentConnections.connections.map(user => <UserCard user={user} key={user._id}/>)}
     </div>
 
   )
   return(
     <div>
-      {currentConnections.length === 0 ? emptyMessage : userList}
+      {currentConnections.connections.length === 0 ? emptyMessage : userList}
     </div>
 
   )

@@ -1,5 +1,6 @@
    import {fetchJSON, decodejwt, postJSON, deleteJSON} from '../utils/setAuthorizationToken'
-
+import fetch from 'isomorphic-fetch'
+import cors from 'cors'
 
 export const SET_USERS = "SET_USERS"
 export const ADD_USER = "ADD_USER"
@@ -194,27 +195,40 @@ export function addRequest(request){
     // .then(data =>{dispatch(getToken(data))})
   }
 }
-export function addConnection(connection){
-  const data = decodejwt()
-  console.log(data.id);
+
+const userId = decodejwt()
+
+export const addConnection =(connection)=>{
+  console.log(userId.id);
   console.log(connection);
   console.log(connection._id);
-  return dispatch => {
-    // return fetch('https://nomadsapp.herokuapp.com/api/users/connection/'+data.id,
-    // return fetch('http://localhost:8080/api/users/connections/'+data.id,
-    return fetch('http://localhost:8080/api/users/connections/'+data.id,
+  // return dispatch => {
+    return fetch('http://localhost:8080/api/users/connections/'+userId.id,
     {
      method: 'post',
      body: JSON.stringify(connection),
+     mode: cors,
      headers: {
        "Content-Type": "application/json"
      }
    }
-  )
-    .then(handleReponse)
-    // .then(data =>{dispatch(getToken(data))})
-  }
+ )
+  .then(handleReponse)
+  .catch(err=>{
+      console.log(err)
+    })
+  // }
 }
+
+// // const data = decodejwt()
+// console.log(userId);
+// console.log(connection);
+// console.log(connection._id);
+// const thing = connection
+
+
+// return fetch('https://nomadsapp.herokuapp.com/api/users/connection/'+data.id,
+// return fetch('http://localhost:8080/api/users/connections/596e325a1659f440abd12041',
 
 
 // export function addConnection(connection){

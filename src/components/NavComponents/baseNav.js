@@ -167,12 +167,19 @@ console.log(this.state.notifications, "does this ever run ?");
       })
     }
 
-    const handleSubmit = async (activity, action)=>{
-      console.log("something");
+    const handleSubmit = (activity, action)=>{
+      console.log(action,"this is the acceptance test");
       if (action === "true"){
-        addConnection(activity)
+       return addConnection(activity)
+        // .then((data)=>{
+        //     console.log(data)
+        //     return data
+        // })
 
-        }
+      }else{
+        console.log(action);
+      }
+
     }
 
 
@@ -262,4 +269,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getRequests})(Requests)
+export default connect(mapStateToProps, {getRequests, addConnection})(Requests)
