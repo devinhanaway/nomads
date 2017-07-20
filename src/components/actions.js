@@ -24,6 +24,8 @@ export const REQUEST_CONNECTIONS = "REQUEST_CONNECTIONS"
 //   }
 // }
 
+const API_BASE_URL = /localhost/.test(window.location.href) ? 'http://localhost:8080' : 'https://bref-mandarine-14323.herokuapp.com'
+
 
 function handleReponse(response){
   console.log(response);
@@ -106,7 +108,7 @@ export function Modal(data){
 export function Signup(data){
   return dispatch => {
     //  return fetch('https://nomadsapp.herokuapp.com/api/users/new', {
-    return fetch('http://localhost:8080/api/users/new', {
+    return fetch(API_BASE_URL+'/api/users/new', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -130,7 +132,7 @@ export function current(){
     console.log(data);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data.id)
-    return fetch('http://localhost:8080/api/users/'+data.id)
+    return fetch(API_BASE_URL+'/api/users/'+data.id)
     .then(handleReponse)
     .then(data => {
       console.log(data);
@@ -144,7 +146,7 @@ export function loginUserAuth(data){
   console.log(data);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/'+data,
-    return fetch('http://localhost:8080/api/users/'+data,
+    return fetch(API_BASE_URL+'/api/users/'+data,
     {
      method: 'post',
      body: JSON.stringify(data),
@@ -167,7 +169,7 @@ export function fetchUsers() {
   "Is this happening"
   return dispatch => {
     // fetch('https://nomadsapp.herokuapp.com/api/users')
-    fetch('http://localhost:8080/api/users')
+    fetch(API_BASE_URL+'/api/users')
       .then(res => res.json())
       .then(data => {
         console.log(data.user);
@@ -182,7 +184,7 @@ export function addRequest(request){
   console.log(request._id);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/new/'+data.id,
-    return fetch('http://localhost:8080/api/users/request/new/'+request._id,
+    return fetch(API_BASE_URL+'/api/users/request/new/'+request._id,
     {
      method: 'post',
      body: JSON.stringify(data),
@@ -203,7 +205,8 @@ export const addConnection =(connection)=>{
   console.log(connection);
   console.log(connection._id);
   // return dispatch => {
-    return fetch('http://localhost:8080/api/users/connections/'+userId.id,
+    // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+userId.id,
+    return fetch(API_BASE_URL+'/api/users/connections/'+userId.id,
     {
      method: 'post',
      body: JSON.stringify(connection),
@@ -220,43 +223,14 @@ export const addConnection =(connection)=>{
   // }
 }
 
-// // const data = decodejwt()
-// console.log(userId);
-// console.log(connection);
-// console.log(connection._id);
-// const thing = connection
 
-
-// return fetch('https://nomadsapp.herokuapp.com/api/users/connection/'+data.id,
-// return fetch('http://localhost:8080/api/users/connections/596e325a1659f440abd12041',
-
-
-// export function addConnection(connection){
-//   const data = decodejwt()
-//   console.log(data.id);
-//   console.log("These are going to add", connection);
-//   return dispatch => {
-//     // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/new/'+data.id,
-//     return fetch('http://localhost:8080/api/users/connections/'+data.id,
-//     {
-//      method: 'post',
-//      body: JSON.stringify(connection),
-//      headers: {
-//        "Content-Type": "application/json"
-//      }
-//    }
-//   )
-//     .then(handleReponse)
-//     // .then(data =>{dispatch(getToken(data))})
-//   }
-// }
 
 export function getConnections(){
   const data = decodejwt()
   console.log(data);
   return dispatch =>{
     // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+data.id)
-    return fetch('http://localhost:8080/api/users/connections/'+data.id)
+    return fetch(API_BASE_URL+'/api/users/connections/'+data.id)
     .then(handleReponse)
     .then(data =>{
         console.log(data);
@@ -272,7 +246,7 @@ export function getRequests(){
   console.log(data);
   return dispatch =>{
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/'+data.id)
-    return fetch('http://localhost:8080/api/users/request/'+data.id)
+    return fetch(API_BASE_URL+'/api/users/request/'+data.id)
     .then(handleReponse)
     .catch((err)=>{
        console.log("failled",err)
