@@ -8,7 +8,7 @@ import { fetchUsers, loginUserAuth} from './actions'
 
 export class Login extends Component {
   componentDidMount(){
-    this.props.fetchUsers()
+    // this.props.fetchUsers()
   }
   state = {
     email: '',

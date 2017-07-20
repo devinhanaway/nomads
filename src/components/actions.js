@@ -166,15 +166,18 @@ export function loginUserAuth(data){
 
 
 export function fetchUsers() {
-  "Is this happening"
+  if(decodejwt()){
+  let User = decodejwt()
+  console.log(User,   "Is this happening");
   return dispatch => {
     // fetch('https://nomadsapp.herokuapp.com/api/users')
-    fetch(API_BASE_URL+'/api/users')
+    fetch(API_BASE_URL+'/api/users/all/'+User.id)
       .then(res => res.json())
       .then(data => {
         console.log(data.user);
         dispatch(setUsers(data.user))})
   }
+}
 }
 
 export function addRequest(request){
@@ -198,9 +201,10 @@ export function addRequest(request){
   }
 }
 
-const userId = decodejwt()
 
 export const addConnection =(connection)=>{
+  const userId = decodejwt()
+
   console.log(userId.id);
   console.log(connection);
   console.log(connection._id);

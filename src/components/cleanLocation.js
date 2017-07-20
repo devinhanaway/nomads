@@ -22,10 +22,10 @@ function handleReponse(response){
 }
 
 
-export function getLatLng(lngLat) {
+export function getLatLng(latlng) {
   // console.log("!!!!!!kjfbwejfb!!!!!!!",data);
   // const lngLat = clean(data)
-  console.log(lngLat, "Is Arvada really in Germany????****************");
+  console.log(latlng, "Is Arvada really in Germany????****************");
 
 
 
@@ -33,7 +33,7 @@ export function getLatLng(lngLat) {
     const key = "&key=AIzaSyALtzDfOHTgJgfG1Uz22M9AT_C57F69HFo"
     return dispatch =>{
       // fetch('https://nomadsapp.herokuapp.com/api/users')
-      return fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+lngLat+key, {
+      return fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+latlng+key, {
        method: 'get',
       //  mode: "no-cors"
     }).then(handleReponse).then(res => {
