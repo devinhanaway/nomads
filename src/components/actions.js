@@ -201,6 +201,7 @@ export function addConnection(connection){
   console.log(connection._id);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/connection/'+data.id,
+    // return fetch('http://localhost:8080/api/users/connections/'+data.id,
     return fetch('http://localhost:8080/api/users/connections/'+data.id,
     {
      method: 'post',

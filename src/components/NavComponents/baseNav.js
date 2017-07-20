@@ -167,12 +167,11 @@ console.log(this.state.notifications, "does this ever run ?");
       })
     }
 
-    const handleSubmit = (activity, action)=>{
+    const handleSubmit = async (activity, action)=>{
       console.log("something");
       if (action === "true"){
         addConnection(activity)
 
-          console.log("its working?")
         }
     }
 
