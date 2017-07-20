@@ -24,7 +24,7 @@ export const REQUEST_CONNECTIONS = "REQUEST_CONNECTIONS"
 //   }
 // }
 
-const API_BASE_URL = /localhost/.test(window.location.href) ? 'http://localhost:8080': 'https://nomads-f8f6a.firebaseapp.com'
+const API_BASE_URL = /localhost/.test(window.location.href) ? 'http://localhost:8080': 'https://nomadsapp.herokuapp.com'
 
 
 function handleReponse(response){
