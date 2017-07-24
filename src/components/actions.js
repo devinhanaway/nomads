@@ -181,16 +181,17 @@ export function fetchUsers() {
 }
 
 export function addRequest(request){
-  const data = decodejwt()
-  console.log(data);
+  // const data = decodejwt()
+  const token = localStorage.getItem('jwtToken');
+  // console.log(data);
   console.log(request);
   console.log(request._id);
   return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/request/new/'+data.id,
-    return fetch(API_BASE_URL+'/api/users/request/new/'+request._id,
+    return fetch(API_BASE_URL+'/api/users/request/new/'+token,
     {
      method: 'post',
-     body: JSON.stringify(data),
+     body: JSON.stringify(request),
      headers: {
        "Content-Type": "application/json"
      }
@@ -203,14 +204,14 @@ export function addRequest(request){
 
 
 export const addConnection =(connection)=>{
-  const userId = decodejwt()
-
-  console.log(userId.id);
+  // const userId = decodejwt()
+  const token = localStorage.getItem('jwtToken');
+  // console.log(userId.id);
   console.log(connection);
   console.log(connection._id);
   // return dispatch => {
     // return fetch('https://nomadsapp.herokuapp.com/api/users/connections/'+userId.id,
-    return fetch(API_BASE_URL+'/api/users/connections/'+userId.id,
+    return fetch(API_BASE_URL+'/api/users/connections/'+token,
     {
      method: 'post',
      body: JSON.stringify(connection),
