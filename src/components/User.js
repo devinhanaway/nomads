@@ -17,12 +17,18 @@ import {
 
 class User extends Component {
   componentWillMount(){
-    console.log("is this working over here?????? in my connections / users ");
-    this.props.getConnections()
+    this.setState({loading: true})
+    console.log(this.props.currentConnections,"is this working over here?????? in my connections / users ");
+    this.props.getConnections().then(()=>{
+      this.setState({loading: false})
+    })
     return true
   }
 
   render(){
+    if(this.state.loading){
+      return null
+    }
     if (!this.props.currentConnections){
       return (<div>
          <Nav />
@@ -48,7 +54,7 @@ class User extends Component {
     }
 
 
-    console.log(this.props);
+    // console.log(this.props);
     return(
       <div className="ui container">
         <Nav />
