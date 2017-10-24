@@ -7,7 +7,7 @@ export default function UserList({ currentConnections }) {
   )
 
   const userList = (
-    <div className="ui four cards">
+    <div className="ui six doubling stackable cards">
       {currentConnections.connections.map(user => <UserCard user={user} key={user._id}/>)}
     </div>
 

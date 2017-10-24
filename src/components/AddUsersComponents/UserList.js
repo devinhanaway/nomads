@@ -7,7 +7,7 @@ export default function UserList({ users }) {
   )
 
   const userList = (
-    <div className="ui four cards">
+    <div className="ui four doubling cards">
       {users.map(user => <UserCard user={user} key={user._id}/>)}
     </div>
 

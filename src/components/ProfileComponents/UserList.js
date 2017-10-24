@@ -8,7 +8,7 @@ export default function UserList({ currentUser }) {
   console.log();
 
   const userList = (
-    <div className="ui four cards">
+    <div className="ui four stackable cards">
      <UserCard currentUser={currentUser} key={currentUser._id}/>
     </div>
 

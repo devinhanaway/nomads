@@ -43,7 +43,7 @@ ReactDOM.render(
     <Provider store={store}>
       <div className="ui">
 
-      <Route exactpath='/' component={App} />
+      <Route exact path='/' component={Landing} />
       <Route path='/User' component={User} />
       <Route path='/landing' component={Landing} />
       <Route path='/newuser' component={NewUser} />
