@@ -2,7 +2,26 @@
         height: 100vh;
         width: 100%;
       }
+.absolute{
+  position: relative;
 
+}
+.ui.menu .item{
+  font-family: mplus-1p-regular;
+}
+.ui.header{
+  font-family: mplus-1p-regular;
+  font-weight: normal;
+}
+.ui.card>.content>.header, .ui.cards>.card>.content>.header{
+  font-family: mplus-1p-bold;
+}
+div.content{
+  font-family: mplus-1p-light, Helvetica, arial, freesans, clean, sans-serif;
+}
+div.email{
+  font-family: mplus-1p-light, Helvetica, arial, freesans, clean, sans-serif;
+}
 html{
   font-family: mplus-1p-thin, Helvetica, arial, freesans, clean, sans-serif;
 }
@@ -10,30 +29,55 @@ h1, h2, h3, h4, h5{
   font-family: mplus-1p-thin, Helvetica, arial, freesans, clean, sans-serif;
 }
 
-/*.modal{
-  position: absolute;
-  background-color: rgba(0,0,0,0.7);
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: white;
+.leaflet-control-zoom-out{
+  visibility: hidden;
+}
+.leaflet-control-zoom-in{
+  visibility: hidden;
+}
+.leaflet-control-zoom.leaflet-bar.leaflet-control{
+  visibility: hidden;
+}
+.ui.secondary.menu{
+  margin-bottom: 5vh;
+}
 
-}*/
-
-.map { position:absolute; top:0; bottom:0; width:100%; }
+.leaflet-layer {
+	position: relative;
+	left: 0;
+	top: 0;
+	}
+  .leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+  .leaflet-control {
+	position: relative;
+	z-index: 7;
+	pointer-events: auto;
+	}
+.leaflet-tile.leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-container.leaflet-pane > svg, .leaflet-pane > canvas, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer{
+  padding-top: 10vh;
+}
+#map-container{
+  padding-top: 8vh;
+}
+.map { position:relative; top:0; bottom:0; width:100%; }
 
 .ui.center.aligned.icon.header.container.padding{
   padding-top: 5vh
 }
+
 
 .landing{
   display: flex;
   flex-direction: row;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
+  width: 110vw;
   background-image: url("/images/coverOne.jpg");
   background-repeat: no-repeat;
   background-size:cover;
@@ -70,21 +114,31 @@ h1, h2, h3, h4, h5{
   background-color: white
 }
 .six.wide.column.social.right{
-  margin-left: 35vw;
+  /*margin-left: 35vw;*/
 }
+
+
 .six.wide.column.social{
-  margin-left: 15vw;
+  /*margin-left: 15vw;*/
 }
 /*
 .landing-title{
   position: absolute;
   margin-top: 80vh;
 }*/
+.login-button{
+  width: 50vw;
+  padding-top: 10vh;
+}
 
 h1:first-child.landing-title{
-    position:sticky;
     margin-top: 50vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    text-align: center;
+
 }
+
 
 .ui.button{
   max-height: 2.5em;
@@ -143,7 +197,7 @@ h1:first-child.landing-title{
 .mapboxgl-ctrl-group > button {
     width: 30px;
     height: 30px;
-    display: block;
+    display:block;
     padding: 0;
     outline: none;
     border: none;
@@ -209,7 +263,7 @@ h1:first-child.landing-title{
 }
 
 .mapboxgl-popup {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     display: -webkit-flex;

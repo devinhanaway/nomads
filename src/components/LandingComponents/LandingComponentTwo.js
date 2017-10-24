@@ -11,7 +11,7 @@ export default class LandingComponentTwo extends Component{
     return(
       <div className="landing2">
         <h1 className=" ui center aligned icon header">Why Join Nomads?</h1>
-      <div className="ui three column grid container">
+      <div className="ui three column grid stackable">
           <div className="column">
             <div className="ui segment container">
               <img className="ui medium centered image" src="../../../images/peopleMap.jpg"/>
@@ -22,7 +22,7 @@ export default class LandingComponentTwo extends Component{
           <div className="column">
             <div className="ui segment container">
               <img className="ui medium centered image" src="../../../images/connection.jpg"/>
-              <h2>Break the chains of social media, without loosing contact with those you car about most.</h2>
+            <h2>Break the chains of social media, without loosing contact with those you care about most.</h2>
               <h3>use text message, email and what's app, like you already do anyways. To stay in touch untill your next visit</h3>
              </div>
           </div>

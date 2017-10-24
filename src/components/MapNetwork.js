@@ -129,7 +129,7 @@ class MapNetwork extends Component {
       }
       if (this.props.currentConnections.length === 0 ){
         return (    <div >
-              <Nav/>
+              <Nav className="absolute"/>
             <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
                     <TileLayer
                       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -142,8 +142,10 @@ class MapNetwork extends Component {
       }
       if(this.state.isLoading === true || this.state.isLoading === "pending"){
         return (
-          (    <div >
-                <Nav/>
+          (    <div className="ui container">
+              <div className="ui container">
+                <Nav className="absolute"/>
+            </div>
               <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
                       <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -179,8 +181,12 @@ class MapNetwork extends Component {
 
     return (
       <div >
+        <div className="absolute ui container">
         <Nav/>
-        <Map className="leaflet-container" center={position} zoom={this.state.zoom}>
+        </div>
+          <div className="ui center aligned header container padding">Explore the map and see where your friends are currently living</div>
+        <div id="map-container">
+        <Map  className="leaflet-container" center={position} zoom={this.state.zoom}>
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -188,6 +194,7 @@ class MapNetwork extends Component {
 
             {this.state.isLoading === false ? createMarker(): null}
             </Map>
+        </div>
     </div>
     );
   }

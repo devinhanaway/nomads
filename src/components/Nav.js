@@ -59,110 +59,83 @@ export class Nav extends React.Component {
   }
 
   render() {
-    // if(this.state.loadRequests === true){
-    //   const initialNav = (
-    //     <div className="ui secondary  menu">
-    //           <Link className="item" to="/map">
-    //             Your Map
-    //           </Link>
-    //           <Link className="item" to="/searchusers">
-    //             Add Conncetions
-    //           </Link>
-    //           <Link className="item" to="/user">
-    //             Your Nomads
-    //           </Link>
-    //
-    //
-    //           <div className="right menu">
-    //             <div className="item">
-    //               <div className="ui icon input">
-    //                 <input type="text" placeholder="Search..."/>
-    //                 <i className="search link icon"></i>
-    //               </div>
-    //             </div>
-    //             <Link className="item" onClick={this.logout} to="/landing">
-    //               Logout
-    //             </Link>
-    //             <Link className="item" to="/profile">
-    //               Profile
-    //             </Link>
-    //           </div>
-    //         </div>
-    //   )
-    //   return (
-    //     <div>
-    //       {this.state.done ? <Redirect to='/landing'/>: initialNav}
-    //     </div>)
-    // } else if(this.state.requests === null ||this.state.requests.length === 0 ){
-    //   const initialNav = (
-    //     <div className="ui secondary  menu">
-    //           <Link className="item" to="/map">
-    //             Your Map
-    //           </Link>
-    //           <Link className="item" to="/searchusers">
-    //             Add Conncetions
-    //           </Link>
-    //           <Link className="item" to="/user">
-    //             Your Nomads
-    //           </Link>
-    //
-    //
-    //           <div className="right menu">
-    //             <div className="item">
-    //               <div className="ui icon input">
-    //                 <input type="text" placeholder="Search..."/>
-    //                 <i className="search link icon"></i>
-    //               </div>
-    //             </div>
-    //             <Link className="item" onClick={this.logout} to="/landing">
-    //               Logout
-    //             </Link>
-    //             <Link className="item" to="/profile">
-    //               Profile
-    //             </Link>
-    //           </div>
-    //         </div>
-    //   )
-    //   return (
-    //     <div>
-    //       {this.state.done ? <Redirect to='/landing'/>: initialNav}
-    //     </div>
-    //
-    //   )
-    // }else{
 
       console.log(this.state.requests.requests);
 
     // const Requests =(<Requests connections={this.props.connections}/>)
-    const nav = (    <div className="ui secondary  menu">
-          <Link className="item" to="/map">
-            Your Map
-          </Link>
-          <Link className="item" to="/searchusers">
-            Add Connections
-          </Link>
-          <Link className="item" to="/user">
-            Your Nomads
-          </Link>
+    const nav = (
+      <div className="ui secondary menu">
+        {/* <div class="ui left simple dropdown">
+    <i className="dropdown icon"></i>
+  <div className="default text">Menu
+  <div className="menu">
+      <div className="item">
+      <Link className="item " to="/map">Network</Link>
+    </div>
+    <div className="item">
+      <Link className="item" to="/searchusers">
+        Add Connections
+      </Link>
+    </div>
+    <div className="item">
+      <Link className="item" to="/user">
+        Your Nomads
+      </Link>
+    </div>
+    </div>
+    </div>
+  </div> */}
+  <div className="item">
+    <div className="ui left simple dropdown absolute">
+      <div className="absolute">Menu
+      <i className="dropdown icon"></i></div>
+      <div className="menu absolute">
+        <div className="item absolute">
+        <Link className="item " to="/map">Network</Link>
+      </div>
+      <div className="item absolute">
+        <Link className="item" to="/user">
+          Your Nomads
+        </Link>
+      </div>
+      <div className="item absolute">
+
+        <Link className="item absolute" to="/searchusers"><i className="add square icon"></i>
+          Add Connections
+        </Link>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
           <div className="right menu">
             <div className="item">
-              <div className="ui icon input">
+              {/* <div className="ui icon input">
                 <input type="text" placeholder="Search..."/>
                 <i className="search link icon"></i>
-              </div>
+              </div> */}
             </div>
-            <Link className="item" onClick={this.logout} to="/landing">
-              Logout
-            </Link>
+
             <Link className="item" to="/profile">
               Profile
             </Link>
+            <Link className="item" onClick={this.logout} to="/landing">
+              Logout
+            </Link>
+            <BaseNav className="item" />
+
           </div>
-          <BaseNav />
+
+
+
+
+
           {/* {this.state.loadRequests === false ? <BaseNav />: null} */}
           {/* {this.state.loadRequests === false ? <Requests requests={this.state.requests.requests}/>: null} */}
+
         </div>
       )
     return (
