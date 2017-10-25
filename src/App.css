@@ -6,6 +6,17 @@
   position: relative;
 
 }
+#addButton{
+  width: 100%;
+  height: auto;
+}
+.ui.card>:last-child, .ui.cards>.card>:last-child{
+  background-color: #FF9800;
+  font-family: mplus-1p-thin;
+}
+img.ui.tiny.circular.image{
+  padding-right: 1em;
+}
 .ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
   text-align: center;
   font-size: 10pt;
