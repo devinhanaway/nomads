@@ -44,8 +44,11 @@ class SearchUsers extends Component {
   //    )
   //  }else{
     return(
+
       <div className="ui container">
           {this.state.isLoading === false ? <Nav />: null}
+              <div className="ui center aligned header container padding text-center">Don't think of this as a friend request on FB.These connections are meaningful as you will be sharing your network with this person and vice versa.</div>
+
       {this.state.isLoading === false ? <UserList  users={this.props.users}/>: null}
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>
@@ -53,7 +56,7 @@ class SearchUsers extends Component {
           <h5>Post Content</h5>
           <button className="btn btn-info">Edit Post</button>
         </div> */}
-        
+
       </div>
     )
   // }

@@ -43,6 +43,7 @@ class User extends Component {
     if (this.props.currentConnections.length === 0 ){
       return (<div>
          <Nav />
+
          <div className="ui center aligned icon header container padding">
          <span>You Don't Have Any Connections Yet, Tell you fellow Nomads to create an Account and Start mapping one another</span>
          <Link className="item" to="/searchusers">
@@ -58,6 +59,7 @@ class User extends Component {
     return(
       <div className="ui container">
         <Nav />
+      <div className="ui center aligned header container padding text-center">Here are your closest connections. Those people you stay in touch with and often times look each other up whenever your geographically close</div>
       <UserList currentConnections={this.props.currentConnections} />
         {/* <div className="well container row">
           <img src={Image1} className="col-md-4"></img>

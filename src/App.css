@@ -6,6 +6,12 @@
   position: relative;
 
 }
+.ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
+  text-align: center;
+  font-size: 10pt;
+  font-family: mplus-1p-regular;
+  margin-bottom: 10vh;
+}
 .ui.menu .item{
   font-family: mplus-1p-regular;
 }
@@ -63,7 +69,7 @@ h1, h2, h3, h4, h5{
   padding-top: 10vh;
 }
 #map-container{
-  padding-top: 8vh;
+  padding-top: 3vh;
 }
 .map { position:relative; top:0; bottom:0; width:100%; }
 

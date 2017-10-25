@@ -57,17 +57,19 @@ render(){
   return (
 
     <div className="ui card">
-       {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
-      <div className="image">
-        <img src={this.props.user.image} alt="Insert funny image"/>
+           {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
+      <div className="extra content">
+          <div className="center floated author">
+            <img className="ui tiny circular image" src={this.props.user.image} alt="Insert funny image"/>{this.props.user.title}
+          </div>
       </div>
       <div className="content">
-        <div className="header">{this.props.user.title}</div>
-      <div className="content">Currently Living: {this.props.user.location}</div>
-    <div className="email">Email: {this.props.user.email}</div>
-  <div className="ui center aligned icon header container padding">
-  <button className="center small header">{!this.state.done && <Icon className="user center small plus" onHover="mouse" disabled={this.state.done} onClick={this.handleClick}></Icon>}</button>
-  </div>
+        {/* <div className="header">{this.props.user.title}</div> */}
+        <div className="content">Currently Living: {this.props.user.location}</div>
+        <div className="email">Email:     {this.props.user.email}</div>
+        <div className="ui center aligned icon header container padding">
+        <button className="center small header">{!this.state.done && <Icon className="user center small plus" onHover="mouse" disabled={this.state.done} onClick={this.handleClick}></Icon>}</button>
+      </div>
       </div>
 
   </div>
