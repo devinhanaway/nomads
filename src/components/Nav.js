@@ -85,25 +85,24 @@ export class Nav extends React.Component {
     </div>
     </div>
   </div> */}
+  <div className="ui mini image left floated aligned four wide column top">
+    <Link to="/landing">
+    <img className="ui image mini" src="../../../images/Nomads_logo_v1.png" />
+    </Link>
+  </div>
   <div className="item">
     <div className="ui left simple dropdown absolute">
       <div className="absolute">Menu
       <i className="dropdown icon"></i></div>
       <div className="menu absolute">
-        <div className="item absolute">
         <Link className="item " to="/map">Network</Link>
-      </div>
-      <div className="item absolute">
         <Link className="item" to="/user">
           Your Nomads
         </Link>
-      </div>
-      <div className="item absolute">
 
         <Link className="item absolute" to="/searchusers"><i className="add square icon"></i>
           Add Connections
         </Link>
-      </div>
       </div>
     </div>
   </div>
@@ -118,15 +117,15 @@ export class Nav extends React.Component {
                 <i className="search link icon"></i>
               </div> */}
             </div>
+            <BaseNav onHover="mouse" className="item notifications" />
 
             <Link className="item" to="/profile">
               Profile
             </Link>
+
             <Link className="item" onClick={this.logout} to="/landing">
               Logout
             </Link>
-            <BaseNav className="item" />
-
           </div>
 
 

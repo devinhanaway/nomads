@@ -43,15 +43,26 @@ export class HeroImage extends Component{
 
     return(
       <div className="landing ui grid">
-        <div className="row">
-        <Link className="landing-title login-button ui button" to="/newuser">Signup</Link>
-        <Link className="landing-title login-button ui button" to="/login">Login</Link>
+        <div className="row darken fixed">
+          <div className="ui mini image left floated aligned four wide column top">
+            <Link to="/landing">
+
+            <img className="ui image mini" src="../../../images/Nomads_logo_v1.png" />
+            </Link>
+          </div>
+        <div className="right floated left aligned four wide column top">
+        <div className="ui">
+          <Link className="right" to="/newuser">Signup</Link>
+        </div>
+        </div>
       </div>
-      <div className="row">
+
+
+      <div className="tint row padding-ten">
           <h1 className="landing-title">{this.state.title}</h1>
       </div>
-      <div className="row">
-
+      <div className="tint row">
+  <Link className="landing-title ui button" to="/login">Login</Link>
     {/* <a className="landing-title ui button" onClick={this.state.setModal}>Login</a> */}
 
 

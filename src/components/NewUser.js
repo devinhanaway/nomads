@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
 import ClassNames from 'classnames'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
@@ -61,7 +67,7 @@ export class User extends Component {
 
   render(){
     const form = (
-      <form className={ClassNames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
+      <form className={ClassNames('ui','loginForm', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
         <h1>Become a Nomad</h1>
 
       {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
@@ -149,7 +155,22 @@ export class User extends Component {
     )
     return(
       <div className="ui container">
-        {this.state.done ? <Redirect to="/profile"/>: form}
+          <div className="row darken fixed">
+            <div className="ui mini image left floated aligned four wide column top">
+              <Link to="/landing">
+
+              <img className="ui image mini" src="../../../images/Nomads_logo_v1.png" />
+              </Link>
+            </div>
+          <div className="right floated left aligned four wide column top">
+          <div className="ui">
+            <Link className="right" to="/login">Login</Link>
+          </div>
+          </div>
+        </div>
+        <div className="ui container">
+          {this.state.done ? <Redirect to="/profile"/>: form}
+        </div>
       </div>
     )
   }

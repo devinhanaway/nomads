@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import ClassNames from 'classnames'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import { fetchUsers, loginUserAuth} from './actions'
+import TextField from 'material-ui/TextField'
+
 
 export class Login extends Component {
   componentDidMount(){
@@ -75,15 +81,28 @@ export class Login extends Component {
   render(){
     // const {errors, email, password, loading, done} = this.state
     const form = (
-      <form className={ClassNames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
-        <h1>Become a Nomad</h1>
+  //     <div className="ui container">
+  //       <form >
+  // <div className="mdl-textfield mdl-js-textfield textfield-demo">
+  //  <input className="mdl-textfield__input" type="text" id="sample1" />
+  // <label className="mdl-textfield__label" for="sample1">Text...</label>
+  // </div>
+  // </form>
+  //     </div>
+      <form className={ClassNames('mdl-textfield','textfield-demo','mdl-js-textfield','loginForm', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
+        <h1 className="ui header centered">Welcome Back</h1>
+      <h4 className="ui header centered">If your not a member yet, you can signup using the signup button</h4>
 
       {!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
 
 
       <div className={ClassNames('field', {error: !!this.state.errors.email})}>
-        <label htmlFor="email">Email</label>
+        <label
+          // className="mdl-textfield__label"
+          htmlFor="email">Email
+        </label>
         <input
+          className="mdl-textfield__input" type="text" id="sample1"
           name="email"
           value={this.state.email}
           onChange={this.handleChange}
@@ -95,6 +114,7 @@ export class Login extends Component {
       <div className={ClassNames('field', {error: !!this.state.errors.password})}>
         <label htmlFor="password">Password</label>
         <input
+          className="mdl-textfield__input" type="text" id="sample1"
           name="password"
           value={this.state.password}
           onChange={this.handleChange}
@@ -114,7 +134,26 @@ export class Login extends Component {
     )
     return(
       <div className="ui container">
+
+        <div className="row darken fixed">
+          <div className="ui mini image left floated aligned four wide column top">
+            <Link to="/landing">
+
+            <img className="ui image mini" src="../../../images/Nomads_logo_v1.png" />
+            </Link>
+          </div>
+        <div className="right floated left aligned four wide column top">
+        <div className="ui">
+          <Link className="right" to="/newuser">Signup</Link>
+        </div>
+        </div>
+      </div>
+
+      <div className="center-items">
         {this.state.done ? <Redirect to="/profile"/>: form}
+      </div>
+
+
       </div>
     )
   }

@@ -200,7 +200,8 @@ console.log(this.state.notifications, "does this ever run ?");
               <div className='col-sm-10'>
                 <div className='notification-label'>{activity.title}</div>
                 <div>
-                  <FlatButton label={'Accept'} onClick={handleSubmit.bind(this, activity, "true")}/>
+                  <FlatButton label={'Accept'}
+                    onHover="mouse" onClick={handleSubmit.bind(this, activity, "true")}/>
                 <FlatButton label={'Reject'} onClick={handleSubmit.bind(this, activity, "false")}/>
                 </div>
               </div>
@@ -218,9 +219,11 @@ console.log(this.state.notifications, "does this ever run ?");
           style={{paddingTop: 7}}
           badgeContent={this.state.unread}
           secondary={true}
-          badgeStyle={{top: 12, right: this.badgeRightPos, border: '1px solid #eee'}}
+          onHover="mouse"
+          badgeStyle={{top: 20, border: '1px solid #eee'}}
           onClick={handleShowCreateOptions}>
           <IconButton
+            onHover="mouse"
             tooltip={this.tooltip}
             onClick={handleShowCreateOptions}>
             {this.icon}
@@ -238,7 +241,7 @@ console.log(this.state.notifications, "does this ever run ?");
             {this.state.notifications.requests.map((activity, idx)=>(
               <MenuItem
                 key={idx}
-                style={{lineHeight: 2}}
+                style={{lineHeight: 1}}
                 primaryText={getMenuItemContent.call(this, activity)}
                 onClick={handleClickActivity.bind(this, activity)} />
             ))}

@@ -4,31 +4,26 @@ import '../../App.css';
 
 
 
-export default class LandingComponentFour extends Component{
+export default class LandingComponentThree extends Component{
 
   render(){
 
     return(
 
       <div className="padding ui">
-        <h1 className=" ui center aligned icon header">Explore the world</h1>
-      <h4 className=" ui center aligned icon header">Your network is larger than you realize</h4>
-
-    <div className="landing4 ui segment container">
-        <div className="ui column grid">
-      <div className="six wide column social segment">
-        <img className="ui medium centered image" src="../../../images/nomads1.jpg"/>
-      <h4>Visit friends, or meetups with a fellow Nomad who is a 1st degree conncetion with one of your close friends</h4>
-      <h4>Visit friends, or meetups with a fellow Nomad who is a 1st degree conncetion with one of your close friends</h4>
-      <h4>Visit friends, or meetups with a fellow Nomad who is a 1st degree conncetion with one of your close friends</h4>
-
-      </div>
-
-
+      <div className="padding ui">
+        <h1 className=" ui center aligned icon header">Explore the World</h1>
+      <h4 className=" ui center aligned icon header">On a mission to create Global Citizens</h4>
     </div>
+      <div className="landing3">
+        <div id="landing-title-three" className="">
+          <ul >Create meaningul global connections through Nomads mutual friends network</ul>
+        <ul className="">Your network is probably more widespread than you even realize. Come explore it!</ul>
+
+        </div>
+
+
       </div>
-
-
       </div>
     )
   }
